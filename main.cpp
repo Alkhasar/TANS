@@ -1,3 +1,7 @@
+// Root includes
+#include <TH1F.h>
+#include <TGraph.h>
+
 // Project includes
 #include "src/RadioNuclide.cpp"
 #include "src/simulation.cpp"
@@ -10,15 +14,24 @@
  * 
  * @returns execution state
  */
-int main(int argc, char *argv[]){
+int main(){ // int argc, char *argv[] se parte da console
+
+    
+    RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
 
     // -- INIZIO TEST
-    RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 10e8);
-    
-    for(int i = 0; i < 10; i++)
-        elementarySimulationStep(1., F18);
 
-    F18->print();
+        int n = 100000;
+        
+        Double_t x[n], y[n];
+        for(int i = 0; i < n; i++){
+            float k = elementarySimulationStep(1., F18);
+            x[i] = i;
+            y[i] = k;
+        }
+        TGraph *g = new TGraph(n, x, y);
+        F18->print();
+        g->Draw();
     // -- FINE TEST
 
     return 0;   // Return 0 ("Succesful Execution") at the end of the program 
