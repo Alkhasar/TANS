@@ -4,6 +4,7 @@
 // Project includes
 #include "../headers/RadioNuclide.h"
 #include "utilities.cpp"
+#include "../headers/Shape.h"
 
 /**
  * This function describes the basic step in the PET simulation
@@ -20,7 +21,6 @@ float elementarySimulationStep(float dt, RadioNuclide *radioNuclide){
     cout << numberOfDecays << endl;
     return numberOfDecays;
     // -- FINE TEST
-
-
     
 }
+

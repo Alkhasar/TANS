@@ -2,38 +2,37 @@
 #include "../headers/Shape.h"
 using namespace std;
 
-Shape::Shape(bool (*fx)(double, double, double)){
-    this->_fx = fx;
-};
-double Shape::fx(double R, double theta, double phi){
-    return _fx(R, theta, phi);
-};
+// Shape::Shape(bool (*fx)(double, double, double)){
+//     this->_fx = fx;
+// };
+
+// double Shape::fx(double R, double theta, double phi){
+//     return _fx(R, theta, phi);
+// };
+
 void Shape::print(){
-    cout << "The shape's cordinates are: " << R << ", " << theta << ", " << phi << endl;
+    cout << "The shape's cordinates are: " << X << ", " << X << ", " << Z << endl;
 };
 
 // Getters
-double Shape::getR(){
-    return R;
-};
-double Shape::getTheta(){
-    return theta;
-};
-double Shape::getPhi(){
-    return phi;
-};
 double Shape::getX(){
-    
+    return X;
+};
+double Shape::getY(){
+    return Y;
+};
+double Shape::getZ(){
+    return Z;
 };
 
 // Setters
-void Shape::setR(double R){
-    this->R = R;
+void Shape::setX(double X){
+    this->X = X;
 };
-void Shape::setTheta(double theta){
-    this->theta = theta;
+void Shape::setY(double Y){
+    this->Y = Y;
 };
-void Shape::setPhi(double phi){
-    this->phi = phi;
+void Shape::setZ(double Z){
+    this->Z = Z;
 };
 

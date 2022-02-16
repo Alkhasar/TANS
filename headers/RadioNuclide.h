@@ -1,9 +1,6 @@
 #ifndef RADIO_NUCLIDE
 #define RADIO_NUCLIDE
 
-#include <iostream>
-using namespace std;
-
 class RadioNuclide {
     public:
         // Constructor
