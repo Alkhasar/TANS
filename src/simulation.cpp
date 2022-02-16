@@ -3,8 +3,8 @@
 
 // Project includes
 #include "../headers/RadioNuclide.h"
-#include "utilities.cpp"
 #include "../headers/Shape.h"
+#include "utilities.cpp"
 
 /**
  * This function describes the basic step in the PET simulation

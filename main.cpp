@@ -6,12 +6,15 @@
 
 // Includes
 #include <random>
+#include <iostream>
 
 // Project includes
 #include "src/RadioNuclide.cpp"
 #include "src/simulation.cpp"
 #include "src/Shape.cpp"
 #include "src/Cylinder.cpp"
+
+using namespace std;
 
 /**
  * Launches program from console
