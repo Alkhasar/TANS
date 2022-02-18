@@ -3,15 +3,15 @@
 
 #include "Shape.h"
 
-class Cylinder : public Shape{
+class Cylinder : public Shape {
     public:
         Cylinder(double, double);
         bool isInside(double, double, double);
         double * sample();
 
     private:
-        double radius;
-        double heigth;
+        double radius = 0;
+        double heigth = 0;
 
 };
 

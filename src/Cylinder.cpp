@@ -5,10 +5,25 @@
 // Project includes
 #include "../headers/Cylinder.h"
 
-
 Cylinder::Cylinder(double radius, double heigth) : Shape(){
+        
+    // Changing log scope
+    LOG_SCOPE_F(INFO, "CYLINDER");
+    
+
+    // Logging construction
+    LOG_F(INFO, "Constructing at: 0x%x", this);
+
+    
+    // Logging radius
     this->radius = radius;
+    LOG_F(INFO, "Radius: %f", this->radius);
+    
+    // Logging heigth
     this->heigth = heigth;
+    LOG_F(INFO, "heigth: %f", this->heigth);
+
+
 };
 
 /**
@@ -32,12 +47,12 @@ bool Cylinder::isInside(double X, double Y, double Z){
 double *Cylinder::sample(){
     
     // Defining local variables
-    double x = 0;
-    double y = 0;
-    double z = 0;
     double u1 = 0; 
     double u2 = 0; 
     double u3 = 0;
+    double x = 0;
+    double y = 0;
+    double z = 0;
 
     do{
 

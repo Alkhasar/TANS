@@ -12,13 +12,13 @@
  * @param dt simulation step duration
  * @param radioNuclide Radionuclide specs
  */
-float elementarySimulationStep(float dt, RadioNuclide *radioNuclide){
+double elementarySimulationStep(double dt, RadioNuclide *radioNuclide){
 
-    float numberOfDecays = rejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
-    radioNuclide->setElapsedTime(dt); 
+    double numberOfDecays = gaussianRejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
+    radioNuclide->addElapsedTime(dt); 
 
     // - INIZIO TEST
-    cout << numberOfDecays << endl;
+    // cout << numberOfDecays << endl;
     return numberOfDecays;
     // -- FINE TEST
     

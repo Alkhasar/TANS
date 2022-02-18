@@ -1,12 +1,20 @@
 #include <TMath.h>
 #include <random>
 
-float rejection(double mu, double sigma, double max){
-    srand(1);
-    float x, y;
+/**
+ * @brief this function is for the gaussian rejection
+ * 
+ * @param mu is the mean value of the gaussian distribution
+ * @param sigma is the std of the gaussian distribution
+ * @param max is the maximum of the box surrounding the gaussian function
+ * @return double 
+ */
+
+double gaussianRejection(double mu, double sigma, double max){ 
+    double x, y;
     do{
-        float u1 = rand()/RAND_MAX;
-        float u2 = rand()/RAND_MAX;
+        double u1 = rand()/RAND_MAX;
+        double u2 = rand()/RAND_MAX;
 
         x = -3.0*sigma + (6*sigma)*u1;
         y = max*u1;

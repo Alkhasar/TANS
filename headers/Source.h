@@ -6,12 +6,12 @@
 
 class Source {
     public:
-        Source(Shape *shape, RadioNuclide *radioNuclide);
-        void update(double dt); // Simulation step
+        Source(Shape *, RadioNuclide *);
+        void update(double); // Simulation step
         
         // Getters
         Shape * getShape();
-        RadioNuclide * getMaterial();
+        RadioNuclide * getRadioNuclide();
 
     private:
         Shape* shape;

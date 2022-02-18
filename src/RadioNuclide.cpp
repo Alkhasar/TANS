@@ -14,10 +14,29 @@
  * @param A current activity
  */
 RadioNuclide::RadioNuclide(double lambda, double N_0){
+
+    // Changing log scope
+    LOG_SCOPE_F(INFO, "RADIO NUCLIDE");
+    
+
+    // Logging construction
+    LOG_F(INFO, "Constructing at: 0x%x", this);
+
+    // Logging Activity
     this->A_0 = N_0*lambda;
+    LOG_F(INFO, "Activity: %f", this->A_0);
+
+    // Logging decay constant
     this->lambda = lambda;
+    LOG_F(INFO, "lambda: %f", this->lambda);
+
+    // Logging N
     this->N_0 = N_0;
+    LOG_F(INFO, "N_0: %f", this->N_0);
+
+    // Logging tau
     tau = 1./lambda;
+    LOG_F(INFO, "tau: %f", this->tau);
 };
 
 // Getters
@@ -50,7 +69,7 @@ double RadioNuclide::getElapsedTime(){
  * 
  * @param dt Time increment
  */
-void RadioNuclide::setElapsedTime(double dt){
+void RadioNuclide::addElapsedTime(double dt){
     elapsedTime += dt; // Incrementing elapsed timer counter
 };
 

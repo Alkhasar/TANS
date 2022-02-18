@@ -4,9 +4,12 @@
 #include <TCanvas.h>
 #include <TGraph2D.h>
 
-// Includes
+// STD Includes
 #include <random>
 #include <iostream>
+
+// Libs Includes
+#include "libs/loguru/loguru.cpp"
 
 // Project includes
 #include "src/RadioNuclide.cpp"
@@ -24,10 +27,29 @@ using namespace std;
  * 
  * @returns execution state
  */
-int main(){ // int argc, char *argv[] se parte da console
+//int main(int argc, char *argv[]){ // int argc, char *argv[] se parte da console RIGA PER QUANDO TOGLIAMO ROOT
+int main(){
+
+    // Finchè usiamo root
+    int argc = 1;
+    char **argv = new char*[1];
+    argv[0] = new char[26]{"PETMontecarloSimulation"};
+
+    // Starting loguru
+    loguru::init(argc, argv);
+    loguru::add_file("logs/log.log", loguru::FileMode::Truncate, loguru::Verbosity_MAX);
+
+    // Loguru Logs
+    LOG_F(INFO, "Starting PET Montecarlo simulation");
+
+    // Getting seed for srand
+    long int seed = 42;
+
+    // Loguru Logs
+    LOG_F(INFO, "Choosen srand seed: %lu", seed);
 
     // Random number seed
-    srand(42);
+    srand(seed);
     
     RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
     Shape *cyl = new Cylinder(3, 10);
@@ -40,35 +62,55 @@ int main(){ // int argc, char *argv[] se parte da console
         int n = 100000;
         
         Double_t x[n], y[n];
+
+                
+        // Loguru Logs
+        LOG_F(INFO, "Simulating %i steps!", n);  
+
         for(int i = 0; i < n; i++){
             double k = elementarySimulationStep(1., F18);
             x[i] = i;
             y[i] = k;
         }
+
+        // Loguru Logs
+        LOG_F(INFO, "Generated %i simulation steps!", n); 
+
         TGraph *g = new TGraph(n, x, y);
-        F18->print();
+        // F18->print();
         g->Draw();
+          
 
         TCanvas* c2 = new TCanvas("c2", "F2", 100, 100, 600, 600);
         c2->cd();
 
         
-        Double_t x1[n], y1[n], z1[n];
+        int n1 = 100000;
+
+        Double_t x1[n1], y1[n1], z1[n1];
         double *k1;
-        for(int i = 0; i < n; i++){
+
+        // Loguru Logs
+        LOG_F(INFO, "Sampling %i points!", n1);  
+
+        for(int i = 0; i < n1; i++){
             k1 = cyl->sample();
             x1[i] = k1[0];
             y1[i] = k1[1];
             z1[i] = k1[2];
         }
+
+        // Loguru Logs
+        LOG_F(INFO, "Sampled %i points!", n1);
+
         TGraph2D *g1 = new TGraph2D(n, x1, y1, z1);
         g1->GetXaxis()->SetAxisColor(kGreen);
         g1->GetYaxis()->SetAxisColor(kBlue);
         g1->GetZaxis()->SetAxisColor(kPink);
 
-
-        cyl->print();
+        // cyl->print();
         g1->Draw();
+ 
     // -- FINE TEST
 
     return 0;   // Return 0 ("Succesful Execution") at the end of the program 

@@ -15,7 +15,7 @@ class RadioNuclide {
         double getConfidency();
 
         //Setters
-        void setElapsedTime(double);
+        void addElapsedTime(double);
 
         // Printing radionuclide data
         void print();

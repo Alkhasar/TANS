@@ -83,6 +83,8 @@
         "mutex": "cpp",
         "queue": "cpp",
         "stack": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "regex": "cpp",
+        "version": "cpp"
     }
 }

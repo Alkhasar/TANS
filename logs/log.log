@@ -1,0 +1,23 @@
+arguments: PETMontecarloSimulation
+Current dir: /home/alkhasar/università/TANS - Esame
+File verbosity level: 9
+date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
+2022-02-17 09:59:56.873 (   0.007s) [main thread     ]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'w', verbosity: 9
+2022-02-17 09:59:56.873 (   0.007s) [main thread     ]               main.cpp:43    INFO| Starting PET Montecarlo simulation
+2022-02-17 09:59:56.873 (   0.007s) [main thread     ]               main.cpp:49    INFO| Choosen srand seed: 42
+2022-02-17 09:59:56.873 (   0.007s) [main thread     ]       RadioNuclide.cpp:19    INFO| { RADIO NUCLIDE
+2022-02-17 09:59:56.873 (   0.007s) [main thread     ]       RadioNuclide.cpp:23    INFO| .   Constructing at: 0x49e074f0
+2022-02-17 09:59:56.873 (   0.008s) [main thread     ]       RadioNuclide.cpp:27    INFO| .   Activity: 3036624730.879133
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:31    INFO| .   lambda: 0.000152
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:35    INFO| .   N_0: 20000000000000.000000
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:39    INFO| .   tau: 6586.260000
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:19    INFO| } 0.000 s: RADIO NUCLIDE
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:11    INFO| { CYLINDER
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:15    INFO| .   Constructing at: 0x4a5af4e0
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:20    INFO| .   Radius: 3.000000
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:24    INFO| .   heigth: 10.000000
+2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:11    INFO| } 0.000 s: CYLINDER
+2022-02-17 09:59:57.951 (   1.085s) [main thread     ]               main.cpp:68    INFO| Simulating 100000 steps!
+2022-02-17 09:59:57.969 (   1.103s) [main thread     ]               main.cpp:77    INFO| Generated 100000 simulation steps!
+2022-02-17 09:59:58.029 (   1.163s) [main thread     ]               main.cpp:94    INFO| Sampling 100000 points!
+2022-02-17 09:59:58.043 (   1.177s) [main thread     ]               main.cpp:104   INFO| Sampled 100000 points!
