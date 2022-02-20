@@ -4,6 +4,7 @@
  */
 
 #include <math.h>
+#include <Random.h>
 
 #include "../headers/RadioNuclide.h"
 
@@ -60,6 +61,10 @@ double RadioNuclide::getConfidency(){
 
 double RadioNuclide::getElapsedTime(){
     return elapsedTime;
+};
+
+double* RadioNuclide::sample(){ 
+    return (new double[2]{((double) rand()/RAND_MAX)*2*M_PI, ((double) rand()/RAND_MAX)*M_PI}); // {theta, phi}
 };
 
 // Setters

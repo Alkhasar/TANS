@@ -7,7 +7,7 @@
 class Source {
     public:
         Source(Shape *, RadioNuclide *);
-        void update(double); // Simulation step
+        void update(double, int, Detector*); // Simulation step
         
         // Getters
         Shape * getShape();

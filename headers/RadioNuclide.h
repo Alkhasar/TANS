@@ -5,6 +5,7 @@ class RadioNuclide {
     public:
         // Constructor
         RadioNuclide(double, double);
+        double *sample();
 
         // Getters
         double getLambda();

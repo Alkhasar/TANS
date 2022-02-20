@@ -69,5 +69,6 @@ double *Cylinder::sample(){
 
     } while(!isInside(x, y, z)); // repeat if the point (x, y, z) is not inside the cylinder
 
+
     return (new double[3]{x, y, z});
 };
