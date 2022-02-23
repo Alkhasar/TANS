@@ -6,6 +6,7 @@
 
 // STD Includes
 #include <random>
+#include <string>
 #include <iostream>
 
 // Libs Includes
@@ -16,6 +17,9 @@
 #include "src/simulation.cpp"
 #include "src/Shape.cpp"
 #include "src/Cylinder.cpp"
+#include "src/Source.cpp"
+#include "src/Detector.cpp"
+#include "src/FileWriter.cpp"
 
 using namespace std;
 
@@ -29,7 +33,7 @@ using namespace std;
  */
 //int main(int argc, char *argv[]){ // int argc, char *argv[] se parte da console RIGA PER QUANDO TOGLIAMO ROOT
 int main(){
-
+    
     // Finchè usiamo root
     int argc = 1;
     char **argv = new char*[1];
@@ -51,11 +55,41 @@ int main(){
     // Random number seed
     srand(seed);
     
+    // File path
+    string path = "data/simulation/data.dat";
+    FileWriter& fileWriter = FileWriter::getInstance(path);
+    
+
     RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
-    Shape *cyl = new Cylinder(3, 10);
+    Shape *cyl = new Cylinder(0.1, 10);
+    Source *src = new Source(cyl, F18);
+    
+
+    // TEEEEEEEEEEEEEEEEEEEST
+    for(int k = 0; k < 10; k++){
+
+        int f = 4;
+        // Test n2X
+        Detector** det = new Detector*[f];
+        for (int i = 0; i < f; i++){
+            double phi = M_PI_2;
+            double deltaOmega = 2*M_PI/f;
+            double r = 1.;
+            det[i]= new Detector(r*cos(deltaOmega*i)*sin(phi), r*sin(deltaOmega*i)*sin(phi), r*cos(phi), 0.1, deltaOmega, deltaOmega*i);
+        }
+        
+        src->update(1, f, det);
+
+        for(int i = 0; i < f; i++)
+            delete det[i];
+    }
+
+    // Deleting source
+    delete(src);
+
 
     // -- INIZIO TEST
-
+    /*
         TCanvas* c1 = new TCanvas("c1", "F1", 100, 100, 400, 400);
         c1->cd();
 
@@ -112,6 +146,8 @@ int main(){
         g1->Draw();
  
     // -- FINE TEST
+
+    */
 
     return 0;   // Return 0 ("Succesful Execution") at the end of the program 
 }

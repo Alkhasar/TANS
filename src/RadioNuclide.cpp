@@ -4,10 +4,17 @@
  */
 
 #include <math.h>
-#include <Random.h>
+#include <random>
 
 #include "../headers/RadioNuclide.h"
 
+
+RadioNuclide::RadioNuclide(){
+    LOG_F(WARNING, "Called RadioNuclide default constructor!");
+};
+RadioNuclide::~RadioNuclide(){
+    LOG_F(INFO, "Destroying RadioNuclide 0x%p", this);
+};
 /**
  * @brief Construct a new Radio Nuclide object
  * 
@@ -21,7 +28,7 @@ RadioNuclide::RadioNuclide(double lambda, double N_0){
     
 
     // Logging construction
-    LOG_F(INFO, "Constructing at: 0x%x", this);
+    LOG_F(INFO, "Constructing at: %p",(void*) this);
 
     // Logging Activity
     this->A_0 = N_0*lambda;
@@ -38,6 +45,10 @@ RadioNuclide::RadioNuclide(double lambda, double N_0){
     // Logging tau
     tau = 1./lambda;
     LOG_F(INFO, "tau: %f", this->tau);
+};
+
+RadioNuclide::RadioNuclide(const RadioNuclide& src){
+    LOG_F(INFO, "Copying %p in new object", (void*) &src);
 };
 
 // Getters
@@ -64,7 +75,15 @@ double RadioNuclide::getElapsedTime(){
 };
 
 double* RadioNuclide::sample(){ 
-    return (new double[2]{((double) rand()/RAND_MAX)*2*M_PI, ((double) rand()/RAND_MAX)*M_PI}); // {theta, phi}
+
+    // polar and azhimutal angles
+    double theta1 = ((double) rand()/RAND_MAX) * 2 * M_PI;
+    double theta2 = ((double) rand()/RAND_MAX) * 2 * M_PI + M_PI;
+
+    double phi1  = ((double) rand()/RAND_MAX) * M_PI;
+    double phi2  = ((double) rand()/RAND_MAX) * M_PI + M_PI; // POSSIBILE FONTE DI ERRORE SE phi1 e phi2 non sono compresi tra +180 e -180
+
+    return (new double[4]{theta1, theta2, phi1, phi2}); // {theta, phi1, phi2}
 };
 
 // Setters
@@ -75,7 +94,7 @@ double* RadioNuclide::sample(){
  * @param dt Time increment
  */
 void RadioNuclide::addElapsedTime(double dt){
-    elapsedTime += dt; // Incrementing elapsed timer counter
+    this->elapsedTime += dt; // Incrementing elapsed timer counter
 };
 
 /**

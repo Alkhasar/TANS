@@ -5,7 +5,14 @@
 
 class Cylinder : public Shape {
     public:
+        // Constructors and destroyers
+        Cylinder();
+        ~Cylinder();
         Cylinder(double, double);
+        Cylinder(const Cylinder&);
+        Shape* clone();
+
+        // Methods
         bool isInside(double, double, double);
         double * sample();
 

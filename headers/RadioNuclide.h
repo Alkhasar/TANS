@@ -4,7 +4,12 @@
 class RadioNuclide {
     public:
         // Constructor
+        RadioNuclide();
+        ~RadioNuclide();
         RadioNuclide(double, double);
+        RadioNuclide(const RadioNuclide&);
+
+        // Methods
         double *sample();
 
         // Getters

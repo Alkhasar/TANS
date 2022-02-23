@@ -5,6 +5,14 @@
 // Project includes
 #include "../headers/Cylinder.h"
 
+Cylinder::Cylinder(){
+    LOG_F(WARNING, "Starting cylinder default constructor!");
+};
+
+Cylinder::~Cylinder(){
+    LOG_F(INFO, "Destroying cylinder %p", (void*) this);
+};
+
 Cylinder::Cylinder(double radius, double heigth) : Shape(){
         
     // Changing log scope
@@ -12,7 +20,7 @@ Cylinder::Cylinder(double radius, double heigth) : Shape(){
     
 
     // Logging construction
-    LOG_F(INFO, "Constructing at: 0x%x", this);
+    LOG_F(INFO, "Constructing at: %p", (void*) this);
 
     
     // Logging radius
@@ -25,6 +33,15 @@ Cylinder::Cylinder(double radius, double heigth) : Shape(){
 
 
 };
+
+Cylinder::Cylinder(const Cylinder& src){
+    LOG_F(WARNING, "Copy 0x%p in new object", &src);
+};
+
+Shape* Cylinder::clone(){
+    LOG_F(WARNING, "Cloning Cylinder at: %p", (void* )this);
+    return new Cylinder(*this);
+}
 
 /**
  * Checks if a point is in this cyinder

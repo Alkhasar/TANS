@@ -2,22 +2,233 @@ arguments: PETMontecarloSimulation
 Current dir: /home/alkhasar/università/TANS - Esame
 File verbosity level: 9
 date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
-2022-02-17 09:59:56.873 (   0.007s) [main thread     ]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'w', verbosity: 9
-2022-02-17 09:59:56.873 (   0.007s) [main thread     ]               main.cpp:43    INFO| Starting PET Montecarlo simulation
-2022-02-17 09:59:56.873 (   0.007s) [main thread     ]               main.cpp:49    INFO| Choosen srand seed: 42
-2022-02-17 09:59:56.873 (   0.007s) [main thread     ]       RadioNuclide.cpp:19    INFO| { RADIO NUCLIDE
-2022-02-17 09:59:56.873 (   0.007s) [main thread     ]       RadioNuclide.cpp:23    INFO| .   Constructing at: 0x49e074f0
-2022-02-17 09:59:56.873 (   0.008s) [main thread     ]       RadioNuclide.cpp:27    INFO| .   Activity: 3036624730.879133
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:31    INFO| .   lambda: 0.000152
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:35    INFO| .   N_0: 20000000000000.000000
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:39    INFO| .   tau: 6586.260000
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]       RadioNuclide.cpp:19    INFO| } 0.000 s: RADIO NUCLIDE
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:11    INFO| { CYLINDER
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:15    INFO| .   Constructing at: 0x4a5af4e0
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:20    INFO| .   Radius: 3.000000
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:24    INFO| .   heigth: 10.000000
-2022-02-17 09:59:56.874 (   0.008s) [main thread     ]           Cylinder.cpp:11    INFO| } 0.000 s: CYLINDER
-2022-02-17 09:59:57.951 (   1.085s) [main thread     ]               main.cpp:68    INFO| Simulating 100000 steps!
-2022-02-17 09:59:57.969 (   1.103s) [main thread     ]               main.cpp:77    INFO| Generated 100000 simulation steps!
-2022-02-17 09:59:58.029 (   1.163s) [main thread     ]               main.cpp:94    INFO| Sampling 100000 points!
-2022-02-17 09:59:58.043 (   1.177s) [main thread     ]               main.cpp:104   INFO| Sampled 100000 points!
+2022-02-23 08:53:08.252 (   0.005s) [main thread     ]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'w', verbosity: 9
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]               main.cpp:47    INFO| Starting PET Montecarlo simulation
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]               main.cpp:53    INFO| Choosen srand seed: 42
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]         FileWriter.cpp:17    WARN| File Writer Instantiated, should appear only once!
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]         FileWriter.cpp:18    INFO| Opening file: data/simulation/data.dat
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]       RadioNuclide.cpp:27    INFO| { RADIO NUCLIDE
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]       RadioNuclide.cpp:31    INFO| .   Constructing at: 0x564cb15dc980
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]       RadioNuclide.cpp:35    INFO| .   Activity: 3036624730.879133
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]       RadioNuclide.cpp:39    INFO| .   lambda: 0.000152
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]       RadioNuclide.cpp:43    INFO| .   N_0: 20000000000000.000000
+2022-02-23 08:53:08.252 (   0.006s) [main thread     ]       RadioNuclide.cpp:47    INFO| .   tau: 6586.260000
+2022-02-23 08:53:08.253 (   0.006s) [main thread     ]       RadioNuclide.cpp:27    INFO| } 0.000 s: RADIO NUCLIDE
+2022-02-23 08:53:08.253 (   0.006s) [main thread     ]           Cylinder.cpp:19    INFO| { CYLINDER
+2022-02-23 08:53:08.253 (   0.006s) [main thread     ]           Cylinder.cpp:23    INFO| .   Constructing at: 0x564cb1abae30
+2022-02-23 08:53:08.253 (   0.006s) [main thread     ]           Cylinder.cpp:28    INFO| .   Radius: 0.100000
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]           Cylinder.cpp:32    INFO| .   heigth: 10.000000
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]           Cylinder.cpp:19    INFO| } 0.000 s: CYLINDER
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]             Source.cpp:16    INFO| { SOURCE
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]             Source.cpp:19    INFO| .   Constructing at: 0x564cb15b6260
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]             Source.cpp:23    INFO| .   shape: 0x564cb1abae30
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]             Source.cpp:27    INFO| .   radionuclide: 0x564cb15dc980
+2022-02-23 08:53:08.253 (   0.007s) [main thread     ]             Source.cpp:16    INFO| } 0.001 s: SOURCE
+2022-02-23 08:53:08.254 (   0.007s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.254 (   0.008s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 1
+2022-02-23 08:53:08.254 (   0.008s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: 0.000000
+2022-02-23 08:53:08.254 (   0.008s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 1.000000
+2022-02-23 08:53:08.254 (   0.008s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.254 (   0.008s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.255 (   0.008s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.255 (   0.008s) [main thread     ]             Source.cpp:91    INFO| .   yb1: 1.000000
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:92    INFO| .   yb2: 1.000000
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:93    INFO| .   xb1: 0.100000
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:94    INFO| .   xb2: -0.100000
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: 1.385981
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: 1.577270
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 0.785802
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.255 (   0.009s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.256 (   0.009s) [main thread     ]             Source.cpp:82    INFO| } 0.002 s: Interaction Test
+2022-02-23 08:53:08.256 (   0.010s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.256 (   0.010s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 2
+2022-02-23 08:53:08.256 (   0.010s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -1.000000
+2022-02-23 08:53:08.257 (   0.010s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 0.000000
+2022-02-23 08:53:08.257 (   0.010s) [main thread     ]             Source.cpp:87    INFO| .   xa: 1.000000
+2022-02-23 08:53:08.257 (   0.010s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -0.050000
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:92    INFO| .   yb2: 0.050000
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -1.000000
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:94    INFO| .   xb2: -1.000000
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -3.123956
+2022-02-23 08:53:08.257 (   0.011s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: 3.049204
+2022-02-23 08:53:08.258 (   0.011s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 5.141400
+2022-02-23 08:53:08.258 (   0.011s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.258 (   0.011s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:82    INFO| } 0.002 s: Interaction Test
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 1
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: 0.000000
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 1.000000
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.258 (   0.012s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.259 (   0.012s) [main thread     ]             Source.cpp:91    INFO| .   yb1: 1.000000
+2022-02-23 08:53:08.259 (   0.012s) [main thread     ]             Source.cpp:92    INFO| .   yb2: 1.000000
+2022-02-23 08:53:08.259 (   0.012s) [main thread     ]             Source.cpp:93    INFO| .   xb1: 0.100000
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:94    INFO| .   xb2: -0.100000
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: 1.544568
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: 1.735427
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 0.998587
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.259 (   0.013s) [main thread     ]             Source.cpp:82    INFO| } 0.001 s: Interaction Test
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 2
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -1.000000
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 0.000000
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:87    INFO| .   xa: 1.000000
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.260 (   0.014s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -0.050000
+2022-02-23 08:53:08.261 (   0.014s) [main thread     ]             Source.cpp:92    INFO| .   yb2: 0.050000
+2022-02-23 08:53:08.261 (   0.014s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -1.000000
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:94    INFO| .   xb2: -1.000000
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -3.031190
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -3.139276
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 2.335053
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 0
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.261 (   0.015s) [main thread     ]             Source.cpp:82    INFO| } 0.002 s: Interaction Test
+2022-02-23 08:53:08.262 (   0.016s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.262 (   0.016s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 2
+2022-02-23 08:53:08.262 (   0.016s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -1.000000
+2022-02-23 08:53:08.262 (   0.016s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 0.000000
+2022-02-23 08:53:08.262 (   0.016s) [main thread     ]             Source.cpp:87    INFO| .   xa: 1.000000
+2022-02-23 08:53:08.263 (   0.016s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.263 (   0.016s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.263 (   0.016s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -0.050000
+2022-02-23 08:53:08.263 (   0.016s) [main thread     ]             Source.cpp:92    INFO| .   yb2: 0.050000
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -1.000000
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:94    INFO| .   xb2: -1.000000
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -3.098305
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: 3.079031
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 2.288796
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:103   WARN| .   INTERAZIONE
+2022-02-23 08:53:08.263 (   0.017s) [main thread     ]             Source.cpp:82    INFO| } 0.001 s: Interaction Test
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 3
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -0.000000
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: -1.000000
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.264 (   0.018s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -1.000000
+2022-02-23 08:53:08.265 (   0.018s) [main thread     ]             Source.cpp:92    INFO| .   yb2: -1.000000
+2022-02-23 08:53:08.265 (   0.018s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -0.100000
+2022-02-23 08:53:08.265 (   0.018s) [main thread     ]             Source.cpp:94    INFO| .   xb2: 0.100000
+2022-02-23 08:53:08.265 (   0.018s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -1.726138
+2022-02-23 08:53:08.265 (   0.019s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -1.530715
+2022-02-23 08:53:08.265 (   0.019s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 3.032900
+2022-02-23 08:53:08.265 (   0.019s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.265 (   0.019s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.265 (   0.019s) [main thread     ]             Source.cpp:82    INFO| } 0.001 s: Interaction Test
+2022-02-23 08:53:08.266 (   0.019s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.266 (   0.020s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 3
+2022-02-23 08:53:08.266 (   0.020s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -0.000000
+2022-02-23 08:53:08.266 (   0.020s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: -1.000000
+2022-02-23 08:53:08.266 (   0.020s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.266 (   0.020s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.266 (   0.020s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.267 (   0.020s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -1.000000
+2022-02-23 08:53:08.267 (   0.020s) [main thread     ]             Source.cpp:92    INFO| .   yb2: -1.000000
+2022-02-23 08:53:08.267 (   0.021s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -0.100000
+2022-02-23 08:53:08.267 (   0.021s) [main thread     ]             Source.cpp:94    INFO| .   xb2: 0.100000
+2022-02-23 08:53:08.267 (   0.021s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -1.596227
+2022-02-23 08:53:08.267 (   0.021s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -1.386290
+2022-02-23 08:53:08.267 (   0.021s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 2.870056
+2022-02-23 08:53:08.268 (   0.021s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.268 (   0.021s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.268 (   0.022s) [main thread     ]             Source.cpp:82    INFO| } 0.002 s: Interaction Test
+2022-02-23 08:53:08.268 (   0.022s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.268 (   0.022s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 1
+2022-02-23 08:53:08.269 (   0.022s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: 0.000000
+2022-02-23 08:53:08.269 (   0.022s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 1.000000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:91    INFO| .   yb1: 1.000000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:92    INFO| .   yb2: 1.000000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:93    INFO| .   xb1: 0.100000
+2022-02-23 08:53:08.269 (   0.023s) [main thread     ]             Source.cpp:94    INFO| .   xb2: -0.100000
+2022-02-23 08:53:08.270 (   0.023s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: 1.435457
+2022-02-23 08:53:08.270 (   0.023s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: 1.624378
+2022-02-23 08:53:08.270 (   0.024s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 1.778019
+2022-02-23 08:53:08.270 (   0.024s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.270 (   0.024s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.270 (   0.024s) [main thread     ]             Source.cpp:82    INFO| } 0.002 s: Interaction Test
+2022-02-23 08:53:08.271 (   0.025s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.271 (   0.025s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 3
+2022-02-23 08:53:08.271 (   0.025s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -0.000000
+2022-02-23 08:53:08.272 (   0.025s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: -1.000000
+2022-02-23 08:53:08.272 (   0.026s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.272 (   0.026s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.273 (   0.026s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.273 (   0.027s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -1.000000
+2022-02-23 08:53:08.273 (   0.027s) [main thread     ]             Source.cpp:92    INFO| .   yb2: -1.000000
+2022-02-23 08:53:08.273 (   0.027s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -0.100000
+2022-02-23 08:53:08.273 (   0.027s) [main thread     ]             Source.cpp:94    INFO| .   xb2: 0.100000
+2022-02-23 08:53:08.274 (   0.027s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -1.686050
+2022-02-23 08:53:08.274 (   0.028s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -1.478890
+2022-02-23 08:53:08.274 (   0.028s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 1.384446
+2022-02-23 08:53:08.274 (   0.028s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.274 (   0.028s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.275 (   0.028s) [main thread     ]             Source.cpp:82    INFO| } 0.003 s: Interaction Test
+2022-02-23 08:53:08.275 (   0.029s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.275 (   0.029s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 0
+2022-02-23 08:53:08.275 (   0.029s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: 1.000000
+2022-02-23 08:53:08.276 (   0.029s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: 0.000000
+2022-02-23 08:53:08.276 (   0.029s) [main thread     ]             Source.cpp:87    INFO| .   xa: 1.000000
+2022-02-23 08:53:08.276 (   0.029s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -nan
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:92    INFO| .   yb2: -inf
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:93    INFO| .   xb1: 1.000000
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:94    INFO| .   xb2: 1.000000
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -nan
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -1.570796
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 0.795083
+2022-02-23 08:53:08.276 (   0.030s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 0
+2022-02-23 08:53:08.277 (   0.030s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.277 (   0.030s) [main thread     ]             Source.cpp:82    INFO| } 0.001 s: Interaction Test
+2022-02-23 08:53:08.277 (   0.031s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.277 (   0.031s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 3
+2022-02-23 08:53:08.277 (   0.031s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -0.000000
+2022-02-23 08:53:08.277 (   0.031s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: -1.000000
+2022-02-23 08:53:08.278 (   0.031s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.278 (   0.031s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.278 (   0.031s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.278 (   0.031s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -1.000000
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:92    INFO| .   yb2: -1.000000
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -0.100000
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:94    INFO| .   xb2: 0.100000
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -1.711147
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -1.500261
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 0.268018
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.278 (   0.032s) [main thread     ]             Source.cpp:82    INFO| } 0.001 s: Interaction Test
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:82    INFO| { Interaction Test
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:84    INFO| .   NRIV: 3
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:85    INFO| .   RIVX: -0.000000
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:86    INFO| .   RIVY: -1.000000
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:87    INFO| .   xa: -1.000000
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:88    INFO| .   ya1: 0.100000
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:89    INFO| .   ya2: -0.100000
+2022-02-23 08:53:08.279 (   0.033s) [main thread     ]             Source.cpp:91    INFO| .   yb1: -1.000000
+2022-02-23 08:53:08.280 (   0.033s) [main thread     ]             Source.cpp:92    INFO| .   yb2: -1.000000
+2022-02-23 08:53:08.280 (   0.033s) [main thread     ]             Source.cpp:93    INFO| .   xb1: -0.100000
+2022-02-23 08:53:08.280 (   0.033s) [main thread     ]             Source.cpp:94    INFO| .   xb2: 0.100000
+2022-02-23 08:53:08.280 (   0.033s) [main thread     ]             Source.cpp:95    WARN| .   Angle a1: -1.711147
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]             Source.cpp:96    WARN| .   Angle a2: -1.500261
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]             Source.cpp:97    INFO| .   Angle theta: 5.561051
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]             Source.cpp:98    INFO| .   a1 < a2: 1
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]             Source.cpp:106   INFO| .   NO INTERAZIONE
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]             Source.cpp:82    INFO| } 0.001 s: Interaction Test
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]             Source.cpp:44    INFO| Destroying Source Object 0x564cb15b6260
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]           Cylinder.cpp:13    INFO| Destroying cylinder 0x564cb1abae30
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]              Shape.cpp:13    INFO| Destroying shape: 0x564cb1abae30
+2022-02-23 08:53:08.280 (   0.034s) [main thread     ]       RadioNuclide.cpp:16    INFO| Destroying RadioNuclide 0x0x564cb15dc980

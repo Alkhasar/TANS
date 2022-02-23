@@ -3,10 +3,15 @@
 
 class Shape {
     public:
+        // Constructor & Destructors
+        Shape();
+        virtual ~Shape();
+        Shape(const Shape&);
 
-        // Constructor
-        // Shape(bool (*fx)(double, double, double));
+        // Clone Constructor
+        virtual Shape* clone() = 0;
 
+        // Methods COMMENTARE
         virtual bool isInside(double, double, double) = 0;
         virtual double * sample() = 0;
         void print();
@@ -26,8 +31,6 @@ class Shape {
         double X = 0;
         double Y = 0;
         double Z = 0;
-
-        //bool (*_fx)(double, double, double);
 
 
 };

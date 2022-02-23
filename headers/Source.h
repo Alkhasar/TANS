@@ -3,11 +3,21 @@
 
 #include "Shape.h"
 #include "RadioNuclide.h"
+#include "../headers/Detector.h"
 
 class Source {
     public:
+        // Constructor & Destructor
         Source(Shape *, RadioNuclide *);
-        void update(double, int, Detector*); // Simulation step
+        Source(const Source&);
+        ~Source();
+
+        // Assignment operator
+        Shape& operator=(const Source&);
+
+
+
+        void update(double, int, Detector**); // Simulation step
         
         // Getters
         Shape * getShape();

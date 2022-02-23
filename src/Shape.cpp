@@ -2,13 +2,17 @@
 #include "../headers/Shape.h"
 using namespace std;
 
-// Shape::Shape(bool (*fx)(double, double, double)){
-//     this->_fx = fx;
-// };
+Shape::Shape(){
+};
 
-// double Shape::fx(double R, double theta, double phi){
-//     return _fx(R, theta, phi);
-// };
+Shape::Shape(const Shape& shape){
+    LOG_F(WARNING, "Copy constructor with shape: %p", (void*) &shape);
+};
+
+Shape::~Shape(){
+    LOG_F(INFO, "Destroying shape: %p", (void*) this);
+};
+
 
 void Shape::print(){
     cout << "The shape's cordinates are: " << X << ", " << X << ", " << Z << endl;
