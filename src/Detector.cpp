@@ -56,7 +56,7 @@ bool Detector::checkTheta(double theta){
 };
 
 /**
- * @brief getter for the 4 base vertex
+ * @brief Getter for the 4 base vertex
  * 
  * @return 2d array of vertex
  */
@@ -65,7 +65,7 @@ double** Detector::getVertex(){
 }
 
 /**
- * @brief Getters for the omega angle
+ * @brief Getter for the omega angle
  * 
  * @return the omega angle as double
  */
@@ -73,3 +73,78 @@ double Detector::getOmega(){
     return omega;
 }
 
+/**
+ * @brief Getter for the deltaOmegaAngle
+ * 
+ * @return deltaOmega angle as double 
+ */
+double Detector::getDeltaOmega(){
+    return deltaOmega;
+}
+
+/**
+ * @brief Checks if a photon emitted from P with angle omega, theta interacts
+ * with this detector
+ * 
+ * @param P photon origin
+ * @param angles photon (omega, theta)
+ * @return interaction time
+ */
+double Detector::interaction(double* P, double* angles){    
+    // Simpler declaration of the 3 needed vertex
+    double x0 = vertex[0][0];
+    double y0 = vertex[0][1];
+    double z0 = vertex[0][2];
+
+    double x1 = vertex[1][0];
+    double y1 = vertex[1][1];
+    double z1 = vertex[1][2];
+
+    double x2 = vertex[2][0];
+    double y2 = vertex[2][1];
+    double z2 = vertex[2][2];
+
+    // Declaring photon position
+    double xp = P[0];
+    double yp = P[1];
+    double zp = P[2];
+
+    // Declaring omega, theta
+    double omega = angles[0];
+    double theta = angles[1];
+    
+        // Getting plane parameters
+    double a = (y1 - y0) * (z2 - z0) -( z1 - z0) * (y2 - y1);
+    double b = -(x1 - x0) * (z2-z0) + ( z1 - z0) * (x2 - x0);
+    double c = (x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
+    double d = -a*x0 - b*y0 - c*z0;
+
+    // Getting interaction point
+    double x = -(d + b*yp + c*zp - c*xp*tan(theta) - b*xp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+    double y = -(-a*yp - c*yp*tan(theta) + d*tan(omega) + a*xp*tan(omega) + c*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+    double z = -(-a*zp + d*tan(theta) + a*xp*tan(theta) + b*yp*tan(theta) - b*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+
+    // Rotated point for condition
+    double* pcond = new double[3]{x, y, z};
+    
+    if((pcond[0] <= max(x0, x2) && pcond[0] >= min(x0, x2)) && (pcond[1] <= max(y1, y2) && pcond[1] >= min(y1, y2)) && (pcond[2] <= max(z0, z1) && pcond[2] >= min(z0, z1))){
+        // Calculating distance P1 - (x, y, z)
+        double distance = sqrt((xp-x)*(xp-x) + (yp-y)*(yp-y) + (zp-z)*(zp-z));
+
+        // Calculating time taken in ns
+        double time = distance / 0.3;
+
+        // Getting msg to write
+        string data = to_string(xp) + "," + to_string(yp) + "," + to_string(zp) + "," + to_string(x) + "," + to_string(y) + "," + to_string(z);
+
+        // Saving data to file
+        FileWriter::getInstance().writeData(1, data);
+
+        // Returning data
+        return time;
+
+    }
+
+    // Returning false
+    return 0;
+}

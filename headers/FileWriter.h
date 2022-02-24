@@ -13,7 +13,7 @@ class FileWriter{
         static FileWriter& getInstance();
         
         ~FileWriter();
-        void writeData(std::string);
+        void writeData(int, std::string);
         
     private:
         // Singleton Pattern
@@ -22,8 +22,9 @@ class FileWriter{
         void operator=(FileWriter const&); // Do not implent in singleton
 
         // File stream
-        std::fstream* file;
-        static const std::string path;
+        std::fstream** file;
+        static const int nFiles = 2;
+        static const std::string path[nFiles];
 };
 
 #endif

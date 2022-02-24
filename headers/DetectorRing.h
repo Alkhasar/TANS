@@ -5,16 +5,21 @@
 
 class DetectorRing{
     public:
+        // Constructor and destructor
         DetectorRing(int, double, double);
         ~DetectorRing();
 
         // Getters
         int getNumberOfDetectors(){return n;}
-        double** getDetectorVertexes(int);
+        double* checkInteraction(double*, double*);
 
     private:
         Detector **detectors;
-        double deltaOmega = 0, w = 0, h = 0, r = 0, n = 0;
+        double deltaOmega = 0;
+        double width = 0;
+        double height = 0;
+        double radius = 0; 
+        double n = 0;
 };
 
 #endif

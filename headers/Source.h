@@ -15,9 +15,9 @@ class Source {
         // Assignment operator
         Shape& operator=(const Source&);
 
-        int timeStepDecays(double);//, int, Detector**); // Simulation step
+        int timeStepDecays(double);
         double* samplePosition();
-        double* sampleAngles();
+        double** sampleAngles();
 
         // Getters
         Shape * getShape();

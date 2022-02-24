@@ -1,6 +1,7 @@
 #include <TMath.h>
 #include <math.h>
 #include <random>
+
 using namespace std;
 
 double gaussianRejection(double, double, double);
@@ -8,6 +9,7 @@ double* zAxisRotation(double*, double);
 
 #ifndef UTILS
 #define UTILS
+
 /**
  * @brief this function is for the gaussian rejection
  * 
@@ -25,6 +27,7 @@ double gaussianRejection(double mu, double sigma, double max){
 
         x = -3.0*sigma + (6*sigma)*u1;
         y = max*u1;
+        
     } while(y > max*TMath::Gaus(x, mu, sigma, true));
     return max*TMath::Gaus(x, mu, sigma, true);
 };
@@ -40,4 +43,5 @@ double gaussianRejection(double mu, double sigma, double max){
 double* zAxisRotation(double* p, double omega){
     return new double[3]{p[0] * cos(omega) - p[1] * sin(omega), p[0] * sin(omega) + p[1] * cos(omega), p[2]};
 };
+
 #endif

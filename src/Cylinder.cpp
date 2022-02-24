@@ -5,14 +5,12 @@
 // Project includes
 #include "../headers/Cylinder.h"
 
-Cylinder::Cylinder(){
-    LOG_F(WARNING, "Starting cylinder default constructor!");
-};
-
-Cylinder::~Cylinder(){
-    LOG_F(INFO, "Destroying cylinder %p", (void*) this);
-};
-
+/**
+ * @brief Constructing a new cylinder with radius and height
+ * 
+ * @param radius in distance units
+ * @param heigth in distance units
+ */
 Cylinder::Cylinder(double radius, double heigth) : Shape(){
         
     // Changing log scope
@@ -30,14 +28,35 @@ Cylinder::Cylinder(double radius, double heigth) : Shape(){
     // Logging heigth
     this->heigth = heigth;
     LOG_F(INFO, "heigth: %f", this->heigth);
-
-
+    
 };
 
-Cylinder::Cylinder(const Cylinder& src){
-    LOG_F(WARNING, "Copy 0x%p in new object", &src);
+/**
+ * @brief Copy constructor
+ * 
+ * @param src take a cylinder address
+ */
+Cylinder::Cylinder(const Cylinder& src):
+    radius(src.radius),
+    heigth(src.heigth)
+    {
+        LOG_F(WARNING, "Copy 0x%p in new object", &src);
+    };
+
+/**
+ * @brief Destroy the Cylinder
+ * 
+ */
+Cylinder::~Cylinder(){
+    LOG_F(INFO, "Destroying cylinder %p", (void*) this);
 };
 
+
+/**
+ * @brief Cloning constructor 
+ * 
+ * @return Cloned cylinder
+ */
 Shape* Cylinder::clone(){
     LOG_F(WARNING, "Cloning Cylinder at: %p", (void* )this);
     return new Cylinder(*this);
@@ -64,15 +83,10 @@ bool Cylinder::isInside(double X, double Y, double Z){
 double *Cylinder::sample(){
     
     // Defining local variables
-    double u1 = 0; 
-    double u2 = 0; 
-    double u3 = 0;
-    double x = 0;
-    double y = 0;
-    double z = 0;
+    double u1 = 0, u2 = 0, u3 = 0;
+    double x = 0,  y = 0,  z = 0;
 
     do{
-
         // Extracting 3 random numbers
         u1 = ((double) rand()/RAND_MAX);    
         u2 = ((double) rand()/RAND_MAX);
@@ -82,10 +96,9 @@ double *Cylinder::sample(){
         // Min + (Max - Min)*#rand
         x = -this->radius + 2*(this->radius)*u1;
         y = -this->radius + 2*(this->radius)*u2; 
-        z = -0.5*this->heigth + (this->radius)*u3;
+        z = -0.5*this->heigth + (this->heigth)*u3;
 
     } while(!isInside(x, y, z)); // repeat if the point (x, y, z) is not inside the cylinder
-
 
     return (new double[3]{x, y, z});
 };

@@ -9,12 +9,6 @@
 #include "../headers/RadioNuclide.h"
 
 
-RadioNuclide::RadioNuclide(){
-    LOG_F(WARNING, "Called RadioNuclide default constructor!");
-};
-RadioNuclide::~RadioNuclide(){
-    LOG_F(INFO, "Destroying RadioNuclide 0x%p", this);
-};
 /**
  * @brief Construct a new Radio Nuclide object
  * 
@@ -47,46 +41,103 @@ RadioNuclide::RadioNuclide(double lambda, double N_0){
     LOG_F(INFO, "tau: %f", this->tau);
 };
 
-RadioNuclide::RadioNuclide(const RadioNuclide& src){
+/**
+ * @brief Destroy the Radio Nuclide
+ * 
+ */
+RadioNuclide::~RadioNuclide(){
+    LOG_F(INFO, "Destroying RadioNuclide 0x%p", this);
+};
+
+/**
+ * @brief Copy constructor
+ * 
+ * @param src radio nuclide address
+ */
+RadioNuclide::RadioNuclide(const RadioNuclide& src):
+    lambda(src.lambda),
+    N_0(src.N_0),
+    A_0(src.A_0),
+    tau(src.tau),
+    elapsedTime(src.elapsedTime)
+{
     LOG_F(INFO, "Copying %p in new object", (void*) &src);
 };
 
-// Getters
+/**
+ * @brief Getter for decay constant
+ * 
+ * @return decay constant as double 
+ */
 double RadioNuclide::getLambda(){
     return lambda;
 };
 
+/**
+ * @brief Calculates and returns the number of radionuclide at time t
+ * 
+ * @param t current time
+ * @return N_0*exp(-lambda*t) 
+ */
 double RadioNuclide::getN(double t){
     return N_0*exp(-lambda*t);
 };
 
+/**
+ * @brief Calculates and returns activity at time t
+ * 
+ * @param t current time
+ * @return exp(-lambda*t)
+ */
 double RadioNuclide::getA(double t){
     return lambda*getN(t);
 };
+
+/**
+ * @brief Returns the half life
+ * 
+ * @return half life 
+ */
 double RadioNuclide::getTau(){
     return tau;
 };
+
+/**
+ * @brief Returns current confidency range
+ * 
+ * @return confidency range 
+ */
 double RadioNuclide::getConfidency(){
     return confidency;
 };
 
+/**
+ * @brief Returns elapsed time
+ * 
+ * @return double 
+ */
 double RadioNuclide::getElapsedTime(){
     return elapsedTime;
 };
 
-double* RadioNuclide::sample(){ 
+/**
+ * @brief Returns 2 pair of angles, used as photon angles
+ * 
+ * @return {{omegaA, thetaA}, {omegaB, thetaB}} 
+ */
+double** RadioNuclide::sample(){ 
 
-    // polar and azhimutal angles
-    double omega1 = ((double) rand()/RAND_MAX) * M_PI; // Omega 1 from 0 to pi
-    // double omega2 = ((double) rand()/RAND_MAX) * M_PI + M_PI; // Omega 2 from pi to 2pi
+    // Omega nd theta angle sampling
+    double omega = ((double) rand()/RAND_MAX) * M_PI; // Omega 1 from 0 to pi
+    double theta  = -M_PI_2 + ((double) rand()/RAND_MAX) * M_PI_2; // theta 1 from -pi/2 to pi/2
 
-    double theta1  = -M_PI_2 + ((double) rand()/RAND_MAX) * M_PI_2; // theta 1 from -pi/2 to pi/2
-    // double theta2  = -M_PI_2 + ((double) rand()/RAND_MAX) * M_PI_2; // POSSIBILE FONTE DI ERRORE SE phi1 e phi2 non sono compresi tra +180 e -180
+    // Data organization
+    double** angles = new double*[2];
+    angles[0] = new double[2]{omega, theta};
+    angles[1] = new double[2]{omega - M_PI, -theta};
 
-    return (new double[4]{omega1, omega1 - M_PI, theta1, -theta1}); // {theta, phi1, phi2} AL MOMENTO EMESSI BACK TO BACK
+    return angles; // Curently emitted back to back
 };
-
-// Setters
 
 /**
  * Return simulation passed time
@@ -94,8 +145,8 @@ double* RadioNuclide::sample(){
  * @param dt Time increment
  */
 void RadioNuclide::addElapsedTime(double dt){
-    this->elapsedTime += dt; // Incrementing elapsed timer counter
-    // Updating ativity
+    this->elapsedTime += dt; 
+    // Updating ativity here
 };
 
 /**

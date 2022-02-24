@@ -4,13 +4,12 @@
 class RadioNuclide {
     public:
         // Constructor
-        RadioNuclide();
         ~RadioNuclide();
         RadioNuclide(double, double);
         RadioNuclide(const RadioNuclide&);
 
         // Methods
-        double *sample();
+        double **sample();
 
         // Getters
         double getLambda();
@@ -27,6 +26,9 @@ class RadioNuclide {
         void print();
 
     private:
+        // Private constructor to avoid empty initialization
+        RadioNuclide();
+        
         double lambda = 0;  // Decay constant
         double N_0 = 0;       // Initial Radionuclides
         double A_0 = 0;       // Activity
