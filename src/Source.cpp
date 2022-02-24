@@ -3,6 +3,7 @@
 #include "../headers/Source.h"
 #include "../libs/loguru/loguru.hpp"
 #include "../headers/Detector.h"
+
 #include "../headers/FileWriter.h"
 
 // #include "utilities.cpp"
@@ -21,11 +22,11 @@ Source::Source(Shape * shape, RadioNuclide * radioNuclide){
     LOG_F(INFO, "Constructing at: %p", (void*) this);
 
     // Logging shape
-    this->shape = shape;//shape->clone();
+    this->shape = shape;
     LOG_F(INFO,"shape: %p", (void*) (this->shape));
 
     // Logging radionuclide
-    this->radioNuclide = radioNuclide;//new RadioNuclide(*radioNuclide);
+    this->radioNuclide = radioNuclide;
     LOG_F(INFO,"radionuclide: %p", (void*) (this->radioNuclide));
 };
 
@@ -50,66 +51,112 @@ Source::~Source(){
     delete this->radioNuclide;
 };
 
-void Source::update(double dt, int nRiv, Detector** riv){
+int Source::timeStepDecays(double time){//, int nRiv, Detector** riv){
+    
+    // Getting timestep
+    double dt = time - oldEvaluationTime;
+
+    // Number of decays (temporay)
+    double numberOfDecays = 10000;//gaussianRejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
+
+    // Adjust radionuclide activity
+    radioNuclide->addElapsedTime(dt); 
+
+    // Returning number of decays
+    return numberOfDecays;
+
+};
+
+/**
+ * @brief Samples a point from the given shape
+ * 
+ * @return {x, y, z} of the sampled point
+ */
+double* Source::samplePosition(){
+    return shape->sample();
+}
+
+/**
+ * @brief samples 2 angles from the radionuclide
+ * 
+ * @return {omega, theta} of the sampled decay
+ */
+double* Source::sampleAngles(){
+    return radioNuclide->sample();
+}
+
+/*
     // Getting file writer instance
     FileWriter& fileWriter = FileWriter::getInstance();
     string data;
-    
-    double numberOfDecays = 1;//gaussianRejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
 
-    radioNuclide->addElapsedTime(dt); 
+    for(int d = 0; d < numberOfDecays; d++){
+        double* P1 = shape->sample(); // P1 points to sampled point
+        double* angles = radioNuclide->sample(); // w1, w2, t1, -t1 ---> t2 = sgn(t1)*pi/2-t1
+        double time;
+        
+        for(int i = 0; i < nRiv; i++){              // For every detectorw
+            for(int j = 0; j < 2; j ++){            // Check both photons
+                        // Getting vertexes
+                        double** v = riv[i]->getVertex();
+                        
+                        // Simpler declaration of the 3 needed vertex
+                        double x0 = v[0][0];
+                        double y0 = v[0][1];
+                        double z0 = v[0][2];
 
-    double* P1 = shape->sample(); // P1 points to sampled point
-    double* angles = radioNuclide->sample();
+                        double x1 = v[1][0];
+                        double y1 = v[1][1];
+                        double z1 = v[1][2];
 
-    // Detector addresses
-    Detector* detAdd[2] = {nullptr, nullptr};
+                        double x2 = v[2][0];
+                        double y2 = v[2][1];
+                        double z2 = v[2][2];
 
-    for(int i = 0; i < nRiv; i++){              // For every detectorw
-        for(int j = 0; j < 2; j ++){            // Check both photons
-            if(riv[i]->check(angles[j])){        // Check wich detector is in thetas range
+                        // Declaring photon position
+                        double xp = P1[0];
+                        double yp = P1[1];
+                        double zp = P1[2];
+
+                        // Declaring omega, theta
+                        double omega = angles[j];
+                        double theta = angles[j+2];
+                        
+                              // Getting plane parameters
+                        double a = (y1 - y0) * (z2 - z0) -( z1 - z0) * (y2 - y1);
+                        double b = -(x1 - x0) * (z2-z0) + ( z1 - z0) * (x2 - x0);
+                        double c = (x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
+                        double d = -a*x0 - b*y0 - c*z0;
+
+                        // Getting interaction point
+                        double x = -(d + b*yp + c*zp - c*xp*tan(theta) - b*xp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+                        double y = -(-a*yp - c*yp*tan(theta) + d*tan(omega) + a*xp*tan(omega) + c*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+                        double z = -(-a*zp + d*tan(theta) + a*xp*tan(theta) + b*yp*tan(theta) - b*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+
+                        // Rotated point for condition
+                        double* pcond = new double[3]{x, y, z};
+                        
+                        if((pcond[0] <= max(v[0][0], v[2][0]) && pcond[0] >= min(v[0][0], v[2][0])) && (pcond[1] <= max(v[1][1], v[2][1]) && pcond[1] >= min(v[1][1], v[2][1])) && (pcond[2] <= max(v[0][2], v[1][2]) && pcond[2] >= min(v[0][2], v[1][2]))){
+                            // Calculating distance P1 - (x, y, z)
+                            double distance = sqrt((xp-x)*(xp-x) + (yp-y)*(yp-y) + (zp-z)*(zp-z));
+
+                            // Calculating time taken
+                            double time = distance / 0.3;
+
+                            // Getting msg to write
+                            data = to_string(xp) + "," + to_string(yp) + "," + to_string(zp) + "," + to_string(x) + "," + to_string(y) + "," + to_string(z);
+
+                            string msg = "INTERACTION FROM P1: (" + to_string(xp) + ", " + to_string(yp) + " ," + to_string(zp) + ")m that took a time t = " +to_string(time) + "ns at det" + to_string(i);
+
+                            // Logging interaction
+                            LOG_F(INFO, "%s", msg.c_str());
+                            fileWriter.writeData(data);
+
+
+                    
+                    }
                 
-                // WIP
-                double xa   = riv[i]->getX() * cos(riv[i]->getOmega()) - riv[i]->getY() * sin(riv[i]->getOmega());
-                double ya1  = riv[i]->getX() * sin(riv[i]->getOmega()) + riv[i]->getY() * cos(riv[i]->getOmega()) + riv[i]->getH();
-                double ya2  = riv[i]->getX() * sin(riv[i]->getOmega()) + riv[i]->getY() * cos(riv[i]->getOmega()) - riv[i]->getH();
-
-                double xb1 = xa * cos(riv[i]->getOmega()) + ya1 * sin(riv[i]->getOmega());
-                double xb2 = xa * cos(riv[i]->getOmega()) + ya2 * sin(riv[i]->getOmega());
-                double yb1 = ((- xa * 1.0 / sin(riv[i]->getOmega()) + ya1 * 1.0 / sin(riv[i]->getOmega()) * tan(M_PI_2 - riv[i]->getOmega()))/(1.0 + tan(M_PI_2 - riv[i]->getOmega())*tan(M_PI_2 - riv[i]->getOmega()))); // Cotangente shiftata di pi/2
-                double yb2 = ((- xa * 1.0 / sin(riv[i]->getOmega()) + ya2 * 1.0 / sin(riv[i]->getOmega()) * tan(M_PI_2 - riv[i]->getOmega()))/(1.0 + tan(M_PI_2 - riv[i]->getOmega())*tan(M_PI_2 - riv[i]->getOmega())));
-
-                // Alpha values
-                double a1 = atan2(yb1 - P1[1], xb1 - P1[0]);
-                double a2 = atan2(yb2 - P1[1], xb2 - P1[0]);
-
-                LOG_SCOPE_F(INFO, "Interaction Test"); // Alcuni angoli risultano essere maggiori di pi/2
-                
-                LOG_F(INFO, "NRIV: %i", i);
-                LOG_F(INFO, "RIVX: %f", riv[i]->getX());
-                LOG_F(INFO, "RIVY: %f", riv[i]->getY());
-                LOG_F(INFO, "xa: %f", xa);  
-                LOG_F(INFO, "ya1: %f", ya1);  
-                LOG_F(INFO, "ya2: %f", ya2); 
-
-                LOG_F(INFO, "yb1: %f", yb1);  
-                LOG_F(INFO, "yb2: %f", yb2);  
-                LOG_F(INFO, "xb1: %f", xb1);  
-                LOG_F(INFO, "xb2: %f", xb2);     
-                LOG_F(WARNING, "Angle a1: %f", a1);    
-                LOG_F(WARNING, "Angle a2: %f", a2);
-                LOG_F(INFO, "Angle theta: %f", angles[2 + j]);
-                LOG_F(INFO, "a1 < a2: %i", a1 < a2);
-
-                // Checking if photon interacts with the detector
-                if(angles[2 + j] > min(a1, a2) && angles[2 + j] <  max(a1, a2)){ // Potrebbe accadere che a1 ed a2 siano negativi ERRORE SE UNO POSITIVO ED UNO NEGATIVO
-                    detAdd[j] = riv[i];
-                    LOG_F(WARNING, "INTERAZIONE");
-                }
-                else{
-                    LOG_F(INFO, "NO INTERAZIONE");
-                }
             }
         }
     }
-};
+    */

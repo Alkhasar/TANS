@@ -77,13 +77,13 @@ double RadioNuclide::getElapsedTime(){
 double* RadioNuclide::sample(){ 
 
     // polar and azhimutal angles
-    double theta1 = ((double) rand()/RAND_MAX) * 2 * M_PI;
-    double theta2 = ((double) rand()/RAND_MAX) * 2 * M_PI + M_PI;
+    double omega1 = ((double) rand()/RAND_MAX) * M_PI; // Omega 1 from 0 to pi
+    // double omega2 = ((double) rand()/RAND_MAX) * M_PI + M_PI; // Omega 2 from pi to 2pi
 
-    double phi1  = ((double) rand()/RAND_MAX) * M_PI;
-    double phi2  = ((double) rand()/RAND_MAX) * M_PI + M_PI; // POSSIBILE FONTE DI ERRORE SE phi1 e phi2 non sono compresi tra +180 e -180
+    double theta1  = -M_PI_2 + ((double) rand()/RAND_MAX) * M_PI_2; // theta 1 from -pi/2 to pi/2
+    // double theta2  = -M_PI_2 + ((double) rand()/RAND_MAX) * M_PI_2; // POSSIBILE FONTE DI ERRORE SE phi1 e phi2 non sono compresi tra +180 e -180
 
-    return (new double[4]{theta1, theta2, phi1, phi2}); // {theta, phi1, phi2}
+    return (new double[4]{omega1, omega1 - M_PI, theta1, -theta1}); // {theta, phi1, phi2} AL MOMENTO EMESSI BACK TO BACK
 };
 
 // Setters
@@ -95,6 +95,7 @@ double* RadioNuclide::sample(){
  */
 void RadioNuclide::addElapsedTime(double dt){
     this->elapsedTime += dt; // Incrementing elapsed timer counter
+    // Updating ativity
 };
 
 /**

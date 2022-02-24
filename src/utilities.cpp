@@ -1,6 +1,13 @@
 #include <TMath.h>
+#include <math.h>
 #include <random>
+using namespace std;
 
+double gaussianRejection(double, double, double);
+double* zAxisRotation(double*, double);
+
+#ifndef UTILS
+#define UTILS
 /**
  * @brief this function is for the gaussian rejection
  * 
@@ -20,4 +27,17 @@ double gaussianRejection(double mu, double sigma, double max){
         y = max*u1;
     } while(y > max*TMath::Gaus(x, mu, sigma, true));
     return max*TMath::Gaus(x, mu, sigma, true);
-}
+};
+
+/**
+ * @brief Takes a point and an angle, returns the same point rotated by omega
+ * along the z axis
+ * 
+ * @param p point
+ * @param omega rotation angle
+ * @return rotated point
+ */
+double* zAxisRotation(double* p, double omega){
+    return new double[3]{p[0] * cos(omega) - p[1] * sin(omega), p[0] * sin(omega) + p[1] * cos(omega), p[2]};
+};
+#endif

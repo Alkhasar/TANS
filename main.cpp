@@ -20,6 +20,7 @@
 #include "src/Source.cpp"
 #include "src/Detector.cpp"
 #include "src/FileWriter.cpp"
+#include "src/DetectorRing.cpp"
 
 using namespace std;
 
@@ -56,26 +57,111 @@ int main(){
     srand(seed);
     
     // File path
-    string path = "data/simulation/data.dat";
-    FileWriter& fileWriter = FileWriter::getInstance(path);
+    FileWriter& fileWriter = FileWriter::getInstance();
+
+    // Creating our setup
+    RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
+    Shape *cylinder = new Cylinder(1, 1);
+    Source *source = new Source(cylinder, F18);
+    DetectorRing *ring = new DetectorRing(10, 2., 1);
+
+    // Current Simulation Time
+    double simulationTime = 0;
+    double maxSimulationTime = 1;
+    double simulationStep = 1;
+
+    // Simulation cycle
+    while(simulationTime < maxSimulationTime){
+
+        // Evaluating number of decays
+        double numberOfDecays = source->timeStepDecays(simulationTime);
+        
+        for(int n = 0; n < numberOfDecays; n++){
+            double* P1 = source->samplePosition(); // P1 points to sampled point
+            double* angles = source->sampleAngles(); // w1, w2, t1, -t1 ---> t2 = sgn(t1)*pi/2-t1
+            
+            for(int i = 0; i < ring->getNumberOfDetectors(); i++){              // For every detectorw
+                for(int j = 0; j < 2; j ++){            // Check both photons
+
+                    // Getting vertexes
+                    double** v = ring->getDetectorVertexes(i);
+                    
+                    // Simpler declaration of the 3 needed vertex
+                    double x0 = v[0][0];
+                    double y0 = v[0][1];
+                    double z0 = v[0][2];
+
+                    double x1 = v[1][0];
+                    double y1 = v[1][1];
+                    double z1 = v[1][2];
+
+                    double x2 = v[2][0];
+                    double y2 = v[2][1];
+                    double z2 = v[2][2];
+
+                    // Declaring photon position
+                    double xp = P1[0];
+                    double yp = P1[1];
+                    double zp = P1[2];
+
+                    // Declaring omega, theta
+                    double omega = angles[j];
+                    double theta = angles[j+2];
+                    
+                        // Getting plane parameters
+                    double a = (y1 - y0) * (z2 - z0) -( z1 - z0) * (y2 - y1);
+                    double b = -(x1 - x0) * (z2-z0) + ( z1 - z0) * (x2 - x0);
+                    double c = (x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
+                    double d = -a*x0 - b*y0 - c*z0;
+
+                    // Getting interaction point
+                    double x = -(d + b*yp + c*zp - c*xp*tan(theta) - b*xp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+                    double y = -(-a*yp - c*yp*tan(theta) + d*tan(omega) + a*xp*tan(omega) + c*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+                    double z = -(-a*zp + d*tan(theta) + a*xp*tan(theta) + b*yp*tan(theta) - b*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
+
+                    // Rotated point for condition
+                    double* pcond = new double[3]{x, y, z};
+                    
+                    if((pcond[0] <= max(v[0][0], v[2][0]) && pcond[0] >= min(v[0][0], v[2][0])) && (pcond[1] <= max(v[1][1], v[2][1]) && pcond[1] >= min(v[1][1], v[2][1])) && (pcond[2] <= max(v[0][2], v[1][2]) && pcond[2] >= min(v[0][2], v[1][2]))){
+                        // Calculating distance P1 - (x, y, z)
+                        double distance = sqrt((xp-x)*(xp-x) + (yp-y)*(yp-y) + (zp-z)*(zp-z));
+
+                        // Calculating time taken in ns
+                        double time = distance / 0.3;
+
+                        // Getting msg to write
+                        string data = to_string(xp) + "," + to_string(yp) + "," + to_string(zp) + "," + to_string(x) + "," + to_string(y) + "," + to_string(z) + "," + to_string(time);
+
+                        // Saving data to file
+                        fileWriter.writeData(data);
+
+                    }
+                }
+            }
+        }
+
+        // Adding simulation time
+        simulationTime += simulationStep;
+    }
+
+    // Freeing memory
+    delete ring;
+    delete source;
     
 
-    RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
-    Shape *cyl = new Cylinder(0.1, 10);
-    Source *src = new Source(cyl, F18);
-    
 
     // TEEEEEEEEEEEEEEEEEEEST
-    for(int k = 0; k < 10; k++){
+    /*for(int k = 0; k < 1; k++){
 
-        int f = 4;
+        int f = 72;
+        double deltaOmega =2* M_PI/f;
+        
+        double r = 2.;
+
         // Test n2X
         Detector** det = new Detector*[f];
         for (int i = 0; i < f; i++){
-            double phi = M_PI_2;
-            double deltaOmega = 2*M_PI/f;
-            double r = 1.;
-            det[i]= new Detector(r*cos(deltaOmega*i)*sin(phi), r*sin(deltaOmega*i)*sin(phi), r*cos(phi), 0.1, deltaOmega, deltaOmega*i);
+            det[i]= new Detector(1., 2*r*tan(deltaOmega/2), deltaOmega*i, r);//r*cos(deltaOmega*i)*sin(phi), r*sin(deltaOmega*i)*sin(phi), r*cos(phi), 0.1, deltaOmega, deltaOmega*i);
         }
         
         src->update(1, f, det);
@@ -83,10 +169,8 @@ int main(){
         for(int i = 0; i < f; i++)
             delete det[i];
     }
-
+    */
     // Deleting source
-    delete(src);
-
 
     // -- INIZIO TEST
     /*

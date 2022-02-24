@@ -1,5 +1,5 @@
 #ifndef FILEWRITER
-#define FILWWRITER
+#define FILEWRITER
 
 // Implementazione singleton in cpp 11: https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 
@@ -10,19 +10,20 @@
 class FileWriter{
     public:
         // Singleton Pattern
-        static FileWriter& getInstance(std::string);
+        static FileWriter& getInstance();
         
         ~FileWriter();
         void writeData(std::string);
         
     private:
         // Singleton Pattern
-        FileWriter(std::string);
+        FileWriter();
         FileWriter(FileWriter const&); // Do not implent in singleton
         void operator=(FileWriter const&); // Do not implent in singleton
 
         // File stream
         std::fstream* file;
+        static const std::string path;
 };
 
 #endif
