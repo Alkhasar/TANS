@@ -1,14 +1,27 @@
-#include <TMath.h>
 #include <math.h>
 #include <random>
 
 using namespace std;
 
+double gauss(double, double, double);
 double gaussianRejection(double, double, double);
 double* zAxisRotation(double*, double);
 
 #ifndef UTILS
 #define UTILS
+
+/**
+ * @brief Evaluates normalised gauss density function at x
+ * 
+ * @param x 
+ * @param mu 
+ * @param sigma 
+ * @return double
+ */
+double gauss(double x, double mu, double sigma)
+{
+	return 1.0 / (sigma * sqrt(2.0 * M_PI)) * exp(-(pow((x - mu)/sigma, 2)/2.0));
+}
 
 /**
  * @brief this function is for the gaussian rejection
@@ -26,11 +39,11 @@ double gaussianRejection(double mu, double sigma, double max){
         double u2 = rand()/RAND_MAX;
 
         x = -3.0*sigma + (6*sigma)*u1;
-        y = max*u1;
+        y = max*u2;
         
-    } while(y > max*TMath::Gaus(x, mu, sigma, true));
-    return max*TMath::Gaus(x, mu, sigma, true);
-};
+    } while(y > max*gauss(x, mu, sigma));
+    return max*gauss(x, mu, sigma);
+}
 
 /**
  * @brief Takes a point and an angle, returns the same point rotated by omega
@@ -42,6 +55,6 @@ double gaussianRejection(double mu, double sigma, double max){
  */
 double* zAxisRotation(double* p, double omega){
     return new double[3]{p[0] * cos(omega) - p[1] * sin(omega), p[0] * sin(omega) + p[1] * cos(omega), p[2]};
-};
+}
 
 #endif

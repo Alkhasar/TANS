@@ -1,12 +1,13 @@
-#include "../headers/Cylinder.h"
-#include "../headers/RadioNuclide.h"
-#include "../headers/Source.h"
+// Project includes
+#include "../headers/source/shapes/Cylinder.h"
+#include "../headers/source/Source.h"
+#include "../headers/detector/Detector.h"
+#include "../headers/utils/FileWriter.h"
+
+// External libs includess
 #include "../libs/loguru/loguru.hpp"
-#include "../headers/Detector.h"
-#include "../headers/FileWriter.h"
 
-// #include "utilities.cpp"
-
+// Std includes
 #include <math.h>
 #include <string>
 
@@ -33,7 +34,7 @@ Source::Source(Shape * shape, RadioNuclide * radioNuclide){
     // Logging radionuclide
     this->radioNuclide = radioNuclide;
     LOG_F(INFO,"radionuclide: %p", (void*) (this->radioNuclide));
-};
+}
 
 /**
  * @brief Copy constructor
@@ -46,24 +47,24 @@ Source::Source(const Source& src):
     z(src.z),
     compton(src.compton)
 {   
-    LOG_F(INFO, "Copying %p in new object", &src);
+    LOG_F(INFO, "Copying %p in new object",(void*) &src);
 
     // Copying important elements
     this->shape = src.shape->clone();
     this->radioNuclide = new RadioNuclide(*src.radioNuclide);
-};
+}
 
 /**
  * @brief Destroy the source
  * 
  */
 Source::~Source(){
-    LOG_F(INFO, "Destroying Source Object %p", this);
+    LOG_F(INFO, "Destroying Source Object %p",(void*) this);
 
     // Destroying shape and radionuclide
     delete this->shape;
     delete this->radioNuclide;
-};
+}
 
 /**
  * @brief Calculates the number of decayed nuclei
@@ -77,15 +78,21 @@ int Source::timeStepDecays(double time){
     double dt = time - oldEvaluationTime;
 
     // Number of decays (temporay)
-    double numberOfDecays = 100000;//gaussianRejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
+    int numberOfDecays = radioNuclide->getN(oldEvaluationTime) - radioNuclide->getN(time);//gaussianRejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
+
+    // Logging number of decays
+    LOG_F(WARNING, "Number of decays in %fs is %i", dt, numberOfDecays);
 
     // Adjust radionuclide activity
     radioNuclide->addElapsedTime(dt); 
 
+    // Setting old evaluation time
+    oldEvaluationTime = time;
+
     // Returning number of decays
     return numberOfDecays;
 
-};
+}
 
 /**
  * @brief Samples a point from the given shape

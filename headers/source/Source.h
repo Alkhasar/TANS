@@ -1,9 +1,9 @@
 #ifndef SOURCE
 #define SOURCE
 
+// Project includes
 #include "Shape.h"
 #include "RadioNuclide.h"
-#include "../headers/Detector.h"
 
 class Source {
     public:

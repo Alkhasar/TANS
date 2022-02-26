@@ -1,13 +1,12 @@
-/**
- * @file RadioNuclide.cpp
- * @brief RadioNuclide class implementation
- */
+// Project includes
+#include "../headers/source/RadioNuclide.h"
 
+// External libs
+#include "../libs/loguru/loguru.hpp"
+
+// std includes
 #include <math.h>
 #include <random>
-
-#include "../headers/RadioNuclide.h"
-
 
 /**
  * @brief Construct a new Radio Nuclide object
@@ -39,15 +38,15 @@ RadioNuclide::RadioNuclide(double lambda, double N_0){
     // Logging tau
     tau = 1./lambda;
     LOG_F(INFO, "tau: %f", this->tau);
-};
+}
 
 /**
  * @brief Destroy the Radio Nuclide
  * 
  */
 RadioNuclide::~RadioNuclide(){
-    LOG_F(INFO, "Destroying RadioNuclide 0x%p", this);
-};
+    LOG_F(INFO, "Destroying RadioNuclide %p", (void*) this);
+}
 
 /**
  * @brief Copy constructor
@@ -62,7 +61,7 @@ RadioNuclide::RadioNuclide(const RadioNuclide& src):
     elapsedTime(src.elapsedTime)
 {
     LOG_F(INFO, "Copying %p in new object", (void*) &src);
-};
+}
 
 /**
  * @brief Getter for decay constant
@@ -71,7 +70,7 @@ RadioNuclide::RadioNuclide(const RadioNuclide& src):
  */
 double RadioNuclide::getLambda(){
     return lambda;
-};
+}
 
 /**
  * @brief Calculates and returns the number of radionuclide at time t
@@ -81,7 +80,7 @@ double RadioNuclide::getLambda(){
  */
 double RadioNuclide::getN(double t){
     return N_0*exp(-lambda*t);
-};
+}
 
 /**
  * @brief Calculates and returns activity at time t
@@ -91,7 +90,7 @@ double RadioNuclide::getN(double t){
  */
 double RadioNuclide::getA(double t){
     return lambda*getN(t);
-};
+}
 
 /**
  * @brief Returns the half life
@@ -100,7 +99,7 @@ double RadioNuclide::getA(double t){
  */
 double RadioNuclide::getTau(){
     return tau;
-};
+}
 
 /**
  * @brief Returns current confidency range
@@ -109,7 +108,7 @@ double RadioNuclide::getTau(){
  */
 double RadioNuclide::getConfidency(){
     return confidency;
-};
+}
 
 /**
  * @brief Returns elapsed time
@@ -118,7 +117,7 @@ double RadioNuclide::getConfidency(){
  */
 double RadioNuclide::getElapsedTime(){
     return elapsedTime;
-};
+}
 
 /**
  * @brief Returns 2 pair of angles, used as photon angles
@@ -137,7 +136,7 @@ double** RadioNuclide::sample(){
     angles[1] = new double[2]{omega - M_PI, -theta};
 
     return angles; // Curently emitted back to back
-};
+}
 
 /**
  * Return simulation passed time
@@ -147,13 +146,4 @@ double** RadioNuclide::sample(){
 void RadioNuclide::addElapsedTime(double dt){
     this->elapsedTime += dt; 
     // Updating ativity here
-};
-
-/**
- * Prints the radionuclide data
- */
-void RadioNuclide::print(){
-    cout << "The radionuclide initial activity is: " << A_0 << " with decay constant " << lambda << " and half life " << tau << endl;
 }
-
- 

@@ -3,7 +3,9 @@
 #include <random>
 
 // Project includes
-#include "../headers/Cylinder.h"
+#include "../headers/source/shapes/Cylinder.h"
+#include "../libs/loguru/loguru.hpp"
+
 
 /**
  * @brief Constructing a new cylinder with radius and height
@@ -29,7 +31,7 @@ Cylinder::Cylinder(double radius, double heigth) : Shape(){
     this->heigth = heigth;
     LOG_F(INFO, "heigth: %f", this->heigth);
     
-};
+}
 
 /**
  * @brief Copy constructor
@@ -40,8 +42,8 @@ Cylinder::Cylinder(const Cylinder& src):
     radius(src.radius),
     heigth(src.heigth)
     {
-        LOG_F(WARNING, "Copy 0x%p in new object", &src);
-    };
+        LOG_F(WARNING, "Copy %p in new object",(void*) &src);
+    }
 
 /**
  * @brief Destroy the Cylinder
@@ -49,7 +51,7 @@ Cylinder::Cylinder(const Cylinder& src):
  */
 Cylinder::~Cylinder(){
     LOG_F(INFO, "Destroying cylinder %p", (void*) this);
-};
+}
 
 
 /**
@@ -78,7 +80,7 @@ bool Cylinder::isInside(double X, double Y, double Z){
         return false;
     }
     return true;
-};
+}
 
 double *Cylinder::sample(){
     
@@ -101,4 +103,4 @@ double *Cylinder::sample(){
     } while(!isInside(x, y, z)); // repeat if the point (x, y, z) is not inside the cylinder
 
     return (new double[3]{x, y, z});
-};
+}

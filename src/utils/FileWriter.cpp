@@ -1,4 +1,7 @@
-#include "../headers/FileWriter.h"
+// Project includes
+#include "../headers/utils/FileWriter.h"
+
+// External Libs
 #include "../libs/loguru/loguru.hpp"
 
 // Declaring a static constant path to the file
@@ -13,26 +16,30 @@ FileWriter& FileWriter::getInstance(){
     // Guarantees Destruction
     static FileWriter instance;
     return instance;
-};
+}
 
 /**
  * @brief Destroying file writer and closing file
  * 
  */
 FileWriter::~FileWriter(){
-    LOG_F(INFO, "Destroying file reader!");
+    LOG_F(INFO, "Destroying file writer %p", (void *) this);
     for(int i = 0; i < nFiles; i ++){
         file[i]->close();
     }
     delete file;
-};
+}
 
 /**
  * @brief Private constructor to avoid double initialization of file writer
  * 
  */
 FileWriter::FileWriter(){
+    // Changing loguru scope
+    LOG_SCOPE_F(INFO, "FILE WRITER");
     LOG_F(WARNING, "File Writer Instantiated, should appear only once!");
+    LOG_F(INFO, "Constructing at %p", (void*) this);
+
     file = new std::fstream*[nFiles];
     for(int i = 0; i < nFiles; i++){    
         LOG_F(INFO, "Opening file: %s", path[i].c_str());
@@ -42,7 +49,7 @@ FileWriter::FileWriter(){
             exit(1);
         }
     }
-};
+}
 
 /**
  * @brief Method to save data inside or opened file

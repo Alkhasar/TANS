@@ -3,17 +3,17 @@
 #include <string>
 #include <iostream>
 
-// Libs Includes
+// External libs
 #include "libs/loguru/loguru.cpp"
 
 // Project includes
-#include "src/RadioNuclide.cpp"
-#include "src/Shape.cpp"
-#include "src/Cylinder.cpp"
-#include "src/Source.cpp"
-#include "src/Detector.cpp"
-#include "src/FileWriter.cpp"
-#include "src/DetectorRing.cpp"
+#include "src/source/RadioNuclide.cpp"
+#include "src/source/Shape.cpp"
+#include "src/source/shapes/Cylinder.cpp"
+#include "src/source/Source.cpp"
+#include "src/detector/Detector.cpp"
+#include "src/detector/DetectorRing.cpp"
+#include "src/utils/FileWriter.cpp"
 
 using namespace std;
 
@@ -25,13 +25,7 @@ using namespace std;
  * 
  * @returns execution state
  */
-//int main(int argc, char *argv[]){ // int argc, char *argv[] se parte da console RIGA PER QUANDO TOGLIAMO ROOT
-int main(){
-    
-    // Finchè usiamo root
-    int argc = 1;
-    char **argv = new char*[1];
-    argv[0] = new char[26]{"PETMontecarloSimulation"};
+int main(int argc, char *argv[]){
 
     // Starting loguru
     loguru::init(argc, argv);
@@ -54,14 +48,14 @@ int main(){
 
     // Creating our setup
     RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
-    Shape *cylinder = new Cylinder(1., 10.);
+    Shape *cylinder = new Cylinder(0.2, 5.);
     Source *source = new Source(cylinder, F18);
-    DetectorRing *ring = new DetectorRing(10, 2., 1);
+    DetectorRing *ring = new DetectorRing(8, 1., 3.);
 
     // Current Simulation Time
     double simulationTime = 0;
-    double maxSimulationTime = 1;
-    double simulationStep = 1;
+    double maxSimulationTime = 1e-3;
+    double simulationStep = 1e-4;
 
     // Data string
     string msg;
@@ -70,16 +64,21 @@ int main(){
     int totalDecays = 0;
     int detectedDecays = 0;
 
-    
-    {   
-        LOG_SCOPE_F(INFO,"SIMULATION");
+    {  
+        LOG_SCOPE_F(INFO,"SIMULATION"); // 1.524506e-4s per operazione Senza ottimizzazione
+                                        // 374.371s per 10^8 dati -> 537Mb File, 1676Mb Debug -> 3.74371us per ciclo -Ofast
+                                        // 311.723s per 10^8 dati (No debug) -> 537Mb ->3.11723us per ciclo -Ofast 16.7% più veloce
 
         // Simulation cycle
         while(simulationTime < maxSimulationTime){
 
+            // Adding simulation time
+            simulationTime += simulationStep;
+
             // Evaluating number of decays
             double numberOfDecays = source->timeStepDecays(simulationTime);
 
+            // Tracking total number of decays
             totalDecays += numberOfDecays;
             
             for(int n = 0; n < numberOfDecays; n++){
@@ -95,18 +94,26 @@ int main(){
                     data = ring->checkInteraction(P, angles[i]);
                     if(data != nullptr){
                         // Saving number of detector, time
-                        msg = to_string(data[0]) + "," + to_string(data[1] + simulationTime);
+                        msg = to_string(data[0]) + "," + to_string(data[1] + simulationTime); // PROBLEMA QUI: Sto SOMMANDO ns CON SECOND
                         fileWriter.writeData(0, msg);
                         detectedDecays++;
+                        
+                        // Removing this delete will inevitably cause a memory leak
+                        delete[] data;
                     }
                 }
+                
+
+                // Removing these deletes will inevitably cause a memory leak
+                delete[] P;
+                delete[] angles[0];
+                delete[] angles[1];
+                delete[] angles;
             }
 
-            // Adding simulation time
-            simulationTime += simulationStep;
         }
         LOG_F(INFO, "Total number of decayed nuclei: %i", totalDecays);
-        LOG_F(INFO, "Number of detected decays: %i", detectedDecays);
+        LOG_F(INFO, "Number of detected photons: %i", detectedDecays);
     }
 
     // Freeing memory

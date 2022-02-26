@@ -1,6 +1,7 @@
 #ifndef DETECTOR_RING
 #define DETECTOR_RING
 
+// Project includes
 #include "Detector.h"
 
 class DetectorRing{

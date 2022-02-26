@@ -22,9 +22,6 @@ class RadioNuclide {
         //Setters
         void addElapsedTime(double);
 
-        // Printing radionuclide data
-        void print();
-
     private:
         // Private constructor to avoid empty initialization
         RadioNuclide();

@@ -1,6 +1,10 @@
-#include "../headers/DetectorRing.h"
-#include "../libs/loguru/loguru.hpp"
+// Std includes
 #include <math.h>
+
+// Project includes
+#include "../headers/detector/DetectorRing.h"
+#include "../libs/loguru/loguru.hpp"
+
 
 /**
  * @brief Construct a detector Ring taking a number n of detectors to arange around a ring of radius r.
@@ -18,7 +22,7 @@ DetectorRing::DetectorRing(int n, double radius, double width){
 
     //Asigning and logging parameters
     deltaOmega = 2 * M_PI / n;
-    LOG_F(INFO, "Delta Omega: %fm", deltaOmega);
+    LOG_F(INFO, "Delta Omega: %frad", deltaOmega);
 
     this->width = width;
     LOG_F(INFO, "Detectors width: %fm", width);
@@ -43,7 +47,7 @@ DetectorRing::DetectorRing(int n, double radius, double width){
  * 
  */
 DetectorRing::~DetectorRing(){
-    LOG_F(INFO, "Deleting detectors ring");
+    LOG_F(INFO, "Destroying detectors ring %p", (void*) this);
     delete[] detectors;
 }
 

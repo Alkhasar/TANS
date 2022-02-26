@@ -5,6 +5,7 @@ class Detector{
     public:
         // Double width, heigth, angle, distance center to center
         Detector(double, double, double, double);
+        ~Detector();
         bool checkOmega(double);
         bool checkTheta(double);
 

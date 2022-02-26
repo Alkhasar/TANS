@@ -1,6 +1,13 @@
-#include "../headers/Detector.h"
-#include "utilities.cpp"
+// Project includes
+#include "../headers/detector/Detector.h"
+#include "../headers/utils/FileWriter.h"
+#include "../src/utils/utilities.cpp"
+
+// std includes
 #include <math.h>
+
+// external libs
+#include "../libs/loguru/loguru.hpp"
 
 /**
  * @brief Construct a new Detector starting by a base detector centered in (r, 0, 0) with width w
@@ -29,6 +36,13 @@ Detector::Detector(double w, double h, double omega, double r){
     vertex[3] = zAxisRotation(new double[3]{r, -h/2, w/2}, omega);
 }
 
+Detector::~Detector(){
+    for(int i = 0; i < 4; i++){
+        delete[] vertex[i];
+    }
+    delete[] vertex;
+}
+
 /**
  * @brief Checks if the detecor can detect a photon with a certain omega angle centered on
  * z axis. After this z axis check, another check on theta is needed.
@@ -40,7 +54,7 @@ Detector::Detector(double w, double h, double omega, double r){
 bool Detector::checkOmega(double omega){ // where pi is the photon angle
     if (omega < this->omega + deltaOmega && omega > this->omega) return true; 
     return false;
-};
+}
 
 /**
  * @brief Checks if the detector can detect a photon with a certain theta angle, taken in the local
@@ -53,7 +67,7 @@ bool Detector::checkOmega(double omega){ // where pi is the photon angle
 bool Detector::checkTheta(double theta){
     if (theta > min(-deltaTheta, deltaTheta) && theta < max(-deltaTheta, deltaTheta)) return true; 
     return false;
-};
+}
 
 /**
  * @brief Getter for the 4 base vertex
@@ -113,7 +127,7 @@ double Detector::interaction(double* P, double* angles){
     double omega = angles[0];
     double theta = angles[1];
     
-        // Getting plane parameters
+    // Getting plane parameters
     double a = (y1 - y0) * (z2 - z0) -( z1 - z0) * (y2 - y1);
     double b = -(x1 - x0) * (z2-z0) + ( z1 - z0) * (x2 - x0);
     double c = (x1 - x0) * (y2 - y0) - (y1 - y0) * (x2 - x0);
@@ -123,11 +137,8 @@ double Detector::interaction(double* P, double* angles){
     double x = -(d + b*yp + c*zp - c*xp*tan(theta) - b*xp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
     double y = -(-a*yp - c*yp*tan(theta) + d*tan(omega) + a*xp*tan(omega) + c*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
     double z = -(-a*zp + d*tan(theta) + a*xp*tan(theta) + b*yp*tan(theta) - b*zp*tan(omega)) / (a + c*tan(theta) + b*tan(omega));
-
-    // Rotated point for condition
-    double* pcond = new double[3]{x, y, z};
     
-    if((pcond[0] <= max(x0, x2) && pcond[0] >= min(x0, x2)) && (pcond[1] <= max(y1, y2) && pcond[1] >= min(y1, y2)) && (pcond[2] <= max(z0, z1) && pcond[2] >= min(z0, z1))){
+    if((x <= max(x0, x2) && x >= min(x0, x2)) && (y <= max(y1, y2) && y >= min(y1, y2)) && (z <= max(z0, z1) && z >= min(z0, z1))){
         // Calculating distance P1 - (x, y, z)
         double distance = sqrt((xp-x)*(xp-x) + (yp-y)*(yp-y) + (zp-z)*(zp-z));
 
@@ -145,6 +156,6 @@ double Detector::interaction(double* P, double* angles){
 
     }
 
-    // Returning false
+    // Returning nullptr
     return 0;
 }
