@@ -1,6 +1,6 @@
 #include <iostream>
-#include "../headers/source/Shape.h"
-#include "../libs/loguru/loguru.hpp"
+#include "../../headers/source/Shape.h"
+#include "../../libs/loguru/loguru.hpp"
 
 using namespace std;
 

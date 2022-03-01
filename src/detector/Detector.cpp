@@ -1,13 +1,13 @@
 // Project includes
-#include "../headers/detector/Detector.h"
-#include "../headers/utils/FileWriter.h"
-#include "../src/utils/utilities.cpp"
+#include "../../headers/detector/Detector.h"
+#include "../../headers/utils/FileWriter.h"
+#include "../../src/utils/utilities.cpp"
 
 // std includes
 #include <math.h>
 
 // external libs
-#include "../libs/loguru/loguru.hpp"
+#include "../../libs/loguru/loguru.hpp"
 
 /**
  * @brief Construct a new Detector starting by a base detector centered in (r, 0, 0) with width w

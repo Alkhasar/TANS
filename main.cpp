@@ -14,6 +14,7 @@
 #include "src/detector/Detector.cpp"
 #include "src/detector/DetectorRing.cpp"
 #include "src/utils/FileWriter.cpp"
+#include "src/utils/utilities.cpp"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ int main(int argc, char *argv[]){
     LOG_F(INFO, "Starting PET Montecarlo simulation");
 
     // Getting seed for srand
-    long int seed = 42;
+    long int seed = 13973216;
 
     // Loguru Logs
     LOG_F(INFO, "Choosen srand seed: %lu", seed);
@@ -50,7 +51,7 @@ int main(int argc, char *argv[]){
     RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
     Shape *cylinder = new Cylinder(0.2, 5.);
     Source *source = new Source(cylinder, F18);
-    DetectorRing *ring = new DetectorRing(8, 1., 3.);
+    DetectorRing *ring = new DetectorRing(72, 1., 3.);
 
     // Current Simulation Time
     double simulationTime = 0;
@@ -64,7 +65,7 @@ int main(int argc, char *argv[]){
     int totalDecays = 0;
     int detectedDecays = 0;
 
-    {  
+    {   // Debug scope
         LOG_SCOPE_F(INFO,"SIMULATION"); // 1.524506e-4s per operazione Senza ottimizzazione
                                         // 374.371s per 10^8 dati -> 537Mb File, 1676Mb Debug -> 3.74371us per ciclo -Ofast
                                         // 311.723s per 10^8 dati (No debug) -> 537Mb ->3.11723us per ciclo -Ofast 16.7% più veloce
@@ -77,9 +78,6 @@ int main(int argc, char *argv[]){
 
             // Evaluating number of decays
             double numberOfDecays = source->timeStepDecays(simulationTime);
-
-            // Tracking total number of decays
-            totalDecays += numberOfDecays;
             
             for(int n = 0; n < numberOfDecays; n++){
                 // Sampling position and angles
@@ -94,14 +92,15 @@ int main(int argc, char *argv[]){
                     data = ring->checkInteraction(P, angles[i]);
                     if(data != nullptr){
                         // Saving number of detector, time
-                        msg = to_string(data[0]) + "," + to_string(data[1] + simulationTime); // PROBLEMA QUI: Sto SOMMANDO ns CON SECOND
+                        msg = to_string(n + totalDecays) + "," + to_string((int)data[0]) + "," + to_string(data[1] + ((double)rand()/RAND_MAX)*simulationTime*1e9 +gaussianRejection(0, 0.05)); // PROBLEMA QUI: Sto SOMMANDO ns CON SECOND
                         fileWriter.writeData(0, msg);
-                        detectedDecays++;
+                        // detectedDecays++;
                         
                         // Removing this delete will inevitably cause a memory leak
                         delete[] data;
                     }
                 }
+                
                 
 
                 // Removing these deletes will inevitably cause a memory leak
@@ -109,7 +108,14 @@ int main(int argc, char *argv[]){
                 delete[] angles[0];
                 delete[] angles[1];
                 delete[] angles;
+
+                // Tracking total number of decays
+                // totalDecays++;
             }
+
+            
+            // Tracking total number of decays assuming A(t) constant in dt
+            totalDecays += numberOfDecays;
 
         }
         LOG_F(INFO, "Total number of decayed nuclei: %i", totalDecays);

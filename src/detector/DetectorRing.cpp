@@ -2,8 +2,8 @@
 #include <math.h>
 
 // Project includes
-#include "../headers/detector/DetectorRing.h"
-#include "../libs/loguru/loguru.hpp"
+#include "../../headers/detector/DetectorRing.h"
+#include "../../libs/loguru/loguru.hpp"
 
 
 /**

@@ -1,8 +1,8 @@
 // Project includes
-#include "../headers/utils/FileWriter.h"
+#include "../../headers/utils/FileWriter.h"
 
 // External Libs
-#include "../libs/loguru/loguru.hpp"
+#include "../../libs/loguru/loguru.hpp"
 
 // Declaring a static constant path to the file
 const std::string FileWriter::path[] = {"data/simulation/data.dat", "data/simulation/debug.dat"};

@@ -1,11 +1,11 @@
 // Project includes
-#include "../headers/source/shapes/Cylinder.h"
-#include "../headers/source/Source.h"
-#include "../headers/detector/Detector.h"
-#include "../headers/utils/FileWriter.h"
+#include "../../headers/source/shapes/Cylinder.h"
+#include "../../headers/source/Source.h"
+#include "../../headers/detector/Detector.h"
+#include "../../headers/utils/FileWriter.h"
 
 // External libs includess
-#include "../libs/loguru/loguru.hpp"
+#include "../../libs/loguru/loguru.hpp"
 
 // Std includes
 #include <math.h>

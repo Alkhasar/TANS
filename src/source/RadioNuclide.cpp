@@ -1,8 +1,8 @@
 // Project includes
-#include "../headers/source/RadioNuclide.h"
+#include "../../headers/source/RadioNuclide.h"
 
 // External libs
-#include "../libs/loguru/loguru.hpp"
+#include "../../libs/loguru/loguru.hpp"
 
 // std includes
 #include <math.h>
@@ -127,8 +127,8 @@ double RadioNuclide::getElapsedTime(){
 double** RadioNuclide::sample(){ 
 
     // Omega nd theta angle sampling
-    double omega = ((double) rand()/RAND_MAX) * M_PI; // Omega 1 from 0 to pi
-    double theta  = -M_PI_2 + ((double) rand()/RAND_MAX) * M_PI_2; // theta 1 from -pi/2 to pi/2
+    double omega = ((double) rand()/RAND_MAX) * 2*M_PI; // Omega 1 from 0 to pi
+    double theta  = acos(-1 + cos(2*M_PI* (double) rand()/RAND_MAX)); // theta 1 from -pi/2 to pi/2 ->
 
     // Data organization
     double** angles = new double*[2];

@@ -3,8 +3,8 @@
 #include <random>
 
 // Project includes
-#include "../headers/source/shapes/Cylinder.h"
-#include "../libs/loguru/loguru.hpp"
+#include "../../../headers/source/shapes/Cylinder.h"
+#include "../../../libs/loguru/loguru.hpp"
 
 
 /**
