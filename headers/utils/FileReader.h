@@ -1,5 +1,5 @@
-#ifndef FILEWRITER
-#define FILEWRITER
+#ifndef FILEREADER
+#define FILEREADER
 
 // Implementazione singleton in cpp 11: https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
 
@@ -7,27 +7,30 @@
 #include <fstream>          // for filestreams
 #include <string>
 #include "Data.h"         // this file makes a large use of cpp string class
-
-class FileWriter{
+#include <vector>
+class FileReader{
     public:
         // Singleton Pattern
-        static FileWriter& getInstance();
+        static FileReader& getInstance();
         
-        ~FileWriter();
-        void writeData(int, Data);
-        void writeData(int, std::string);
+        ~FileReader();
+        std::vector<Data> getData(int);
         
     private:
         // Singleton Pattern
-        FileWriter(); // in thisway we can't create more than one FileWriter
-        FileWriter(FileWriter const&); // Do not implent in singleton
-        void operator=(FileWriter const&); // Do not implent in singleton
+        FileReader(); // in thisway we can't create more than one FileWriter
+        FileReader(FileReader const&); // Do not implent in singleton
+        void operator=(FileReader const&); // Do not implent in singleton
 
         // File stream
         std::fstream** file;
-        static const int nFiles = 4;
+        static const int nFiles = 1;
         static const std::string path[nFiles];
         static const bool bin[nFiles];
+        
+        // 2D Vector data
+        std::vector<std::vector<Data>> data; 
+
 };
 
 #endif

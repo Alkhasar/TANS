@@ -6,10 +6,14 @@
 // External libs
 #include "libs/loguru/loguru.cpp"
 
+// Project structs include
+#include "headers/utils/Data.h"
+
 // Project includes
 #include "src/source/RadioNuclide.cpp"
 #include "src/source/Shape.cpp"
 #include "src/source/shapes/Cylinder.cpp"
+#include "src/source/shapes/Point.cpp"
 #include "src/source/Source.cpp"
 #include "src/detector/Detector.cpp"
 #include "src/detector/DetectorRing.cpp"
@@ -27,6 +31,9 @@ using namespace std;
  * @returns execution state
  */
 int main(int argc, char *argv[]){
+//int main(){
+    //int argc = 2;
+   //char** argv = new char*[argc]{"main.cpp", "PROGRAMMA"};
 
     // Starting loguru
     loguru::init(argc, argv);
@@ -43,23 +50,28 @@ int main(int argc, char *argv[]){
 
     // Random number seed
     srand(seed);
-    
+
+    // Data struct size
+    LOG_F(INFO, "Size of Data struct: %i bytes", (int) sizeof(Data));
+
     // File path
     FileWriter& fileWriter = FileWriter::getInstance();
 
+    /****************
+     *  SIMULAZIONE *
+     ****************/
+
     // Creating our setup
     RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
-    Shape *cylinder = new Cylinder(0.2, 5.);
-    Source *source = new Source(cylinder, F18);
-    DetectorRing *ring = new DetectorRing(72, 1., 3.);
+    Shape *cylinder = new Cylinder(0.2, 0.0001);
+    Point* point = new Point(0., 0., 0.);
+    Source *source = new Source(point, F18);
+    DetectorRing *ring = new DetectorRing(72, 6., 10.);
 
     // Current Simulation Time
     double simulationTime = 0;
-    double maxSimulationTime = 1e-3;
-    double simulationStep = 1e-4;
-
-    // Data string
-    string msg;
+    double maxSimulationTime = 5e-5;
+    double simulationStep = 1e-7;
 
     // Utils Variables
     int totalDecays = 0;
@@ -83,17 +95,23 @@ int main(int argc, char *argv[]){
                 // Sampling position and angles
                 double* P = source->samplePosition(); // P1 points to sampled point
                 double** angles = source->sampleAngles(); // w1, w2, t1, -t1 ---> t2 = sgn(t1)*pi/2-t1
-
+                
                 // Preparing data holder
                 double* data = nullptr;
 
                 // For every detector
-                for(int i = 0; i < 2; i ++){            // Check both photons
+                for(int i = 0; i < 1; i++){            // Check both photons
                     data = ring->checkInteraction(P, angles[i]);
+                
                     if(data != nullptr){
+                        // Data string
+                        string msg2;
+                        Data msg{(uint32_t) n + totalDecays, (uint8_t) data[0], data[1] + ((simulationTime - simulationStep) + ((double)rand()/RAND_MAX)*simulationStep*1e9) + gaussianRejection(0., (250*1e-3)/(2*sqrt(2*log(2))))};
+
                         // Saving number of detector, time
-                        msg = to_string(n + totalDecays) + "," + to_string((int)data[0]) + "," + to_string(data[1] + ((double)rand()/RAND_MAX)*simulationTime*1e9 +gaussianRejection(0, 0.05)); // PROBLEMA QUI: Sto SOMMANDO ns CON SECOND
+                        msg2 = to_string(n + totalDecays) + "," + to_string((int)data[0]) + "," + to_string(data[1] + ((simulationTime - simulationStep) + ((double)rand()/RAND_MAX)*simulationStep*1e9) + gaussianRejection(0., (250*1e-3)/(2*sqrt(2*log(2))))); // FWHM = 250ps
                         fileWriter.writeData(0, msg);
+                        //fileWriter.writeData(2, msg2);
                         // detectedDecays++;
                         
                         // Removing this delete will inevitably cause a memory leak
@@ -125,6 +143,11 @@ int main(int argc, char *argv[]){
     // Freeing memory
     delete ring;
     delete source;
+    
+    /************
+     *  ANALISI *
+     ************/
+
     
 
     return 0;   // Return 0 ("Succesful Execution") at the end of the program 

@@ -126,14 +126,21 @@ double RadioNuclide::getElapsedTime(){
  */
 double** RadioNuclide::sample(){ 
 
-    // Omega nd theta angle sampling
-    double omega = ((double) rand()/RAND_MAX) * 2*M_PI; // Omega 1 from 0 to pi
-    double theta  = acos(-1 + cos(2*M_PI* (double) rand()/RAND_MAX)); // theta 1 from -pi/2 to pi/2 ->
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(0, 1);
 
+    double u1 = (double) rand()/RAND_MAX; 
+    double u2 = (double) rand()/RAND_MAX;
+
+    // Omega nd theta angle sampling
+    double omega = 2 * M_PI * u1 ; // Omega 1 from 0 to pi
+    double theta = acos(1 - 2 * u2); // acos(u2);
+    
     // Data organization
     double** angles = new double*[2];
     angles[0] = new double[2]{omega, theta};
-    angles[1] = new double[2]{omega - M_PI, -theta};
+    angles[1] = new double[2]{std::fmod(omega + M_PI, 2*M_PI), theta};// (omega > M_PI) ? omega - M_PI : omega + M_PI
 
     return angles; // Curently emitted back to back
 }

@@ -21,6 +21,7 @@ class DetectorRing{
         double height = 0;
         double radius = 0; 
         double n = 0;
+        bool t = true;
 };
 
 #endif

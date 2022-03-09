@@ -33,16 +33,16 @@ double gauss(double x, double mu, double sigma)
  */
 
 double gaussianRejection(double mu, double sigma, double max=1.){ 
-    double x, y;
+    double x=0, y=0;
     do{
         double u1 = (double) rand()/RAND_MAX;
         double u2 = (double) rand()/RAND_MAX;
 
-        x = -3.0*sigma + (6*sigma)*u1;
+        x = -3.0*(sigma + mu) + (6*(sigma + mu))*u1;
         y = max*u2;
         
-    } while(y >max * gauss(x, mu, sigma));
-    return max * gauss(x, mu, sigma);
+    } while(y > gauss(x, mu, sigma));
+    return x;
 }
 
 /**

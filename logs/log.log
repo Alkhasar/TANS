@@ -2,58 +2,557 @@ arguments: ./main.out
 Current dir: /home/alkhasar/università/TANS - Esame
 File verbosity level: 9
 date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'w', verbosity: 9
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]               main.cpp:36    INFO| Starting PET Montecarlo simulation
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]               main.cpp:42    INFO| Choosen srand seed: 13973216
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]         FileWriter.cpp:39    INFO| { FILE WRITER
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]         FileWriter.cpp:40    WARN| .   File Writer Instantiated, should appear only once!
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]         FileWriter.cpp:41    INFO| .   Constructing at 0x55bc338e0678
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]         FileWriter.cpp:45    INFO| .   Opening file: data/simulation/data.dat
-2022-03-01 13:31:20.939 (   0.000s) [main thread     ]         FileWriter.cpp:45    INFO| .   Opening file: data/simulation/debug.dat
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]         FileWriter.cpp:39    INFO| } 0.001 s: FILE WRITER
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:20    INFO| { RADIO NUCLIDE
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:24    INFO| .   Constructing at: 0x55bc345e6080
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:28    INFO| .   Activity: 3036624730.879133
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:32    INFO| .   lambda: 0.000152
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:36    INFO| .   N_0: 20000000000000.000000
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:40    INFO| .   tau: 6586.260000
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]       RadioNuclide.cpp:20    INFO| } 0.000 s: RADIO NUCLIDE
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]           Cylinder.cpp:19    INFO| { CYLINDER
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]           Cylinder.cpp:23    INFO| .   Constructing at: 0x55bc345e6010
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]           Cylinder.cpp:28    INFO| .   Radius: 0.200000
-2022-03-01 13:31:20.940 (   0.001s) [main thread     ]           Cylinder.cpp:32    INFO| .   heigth: 5.000000
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]           Cylinder.cpp:19    INFO| } 0.000 s: CYLINDER
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]             Source.cpp:25    INFO| { SOURCE
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]             Source.cpp:28    INFO| .   Constructing at: 0x55bc345e5fa0
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]             Source.cpp:32    INFO| .   shape: 0x55bc345e6010
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]             Source.cpp:36    INFO| .   radionuclide: 0x55bc345e6080
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]             Source.cpp:25    INFO| } 0.000 s: SOURCE
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:18    INFO| { DETECTOR RING
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:21    INFO| .   Constructing at: 0x55bc345e7020
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:25    INFO| .   Delta Omega: 0.087266rad
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:28    INFO| .   Detectors width: 3.000000m
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:31    INFO| .   Detectors center distance from origin: 1.000000m
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:34    INFO| .   Number of detectors: 72
-2022-03-01 13:31:20.941 (   0.002s) [main thread     ]       DetectorRing.cpp:37    INFO| .   Detectors height: 0.087322m
-2022-03-01 13:31:20.942 (   0.002s) [main thread     ]       DetectorRing.cpp:18    INFO| } 0.001 s: DETECTOR RING
-2022-03-01 13:31:20.942 (   0.003s) [main thread     ]               main.cpp:69    INFO| { SIMULATION
-2022-03-01 13:31:20.942 (   0.003s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:24.917 (   3.978s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:28.701 (   7.762s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:32.610 (  11.671s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:36.162 (  15.222s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:39.576 (  18.637s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:43.524 (  22.585s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:47.043 (  26.103s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:50.578 (  29.639s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:54.261 (  33.322s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000100s is 303662
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]               main.cpp:121   INFO| .   Total number of decayed nuclei: 3036620
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]               main.cpp:122   INFO| .   Number of detected photons: 0
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]               main.cpp:69    INFO| } 37.117 s: SIMULATION
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]       DetectorRing.cpp:50    INFO| Destroying detectors ring 0x55bc345e7020
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]             Source.cpp:62    INFO| Destroying Source Object 0x55bc345e5fa0
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]           Cylinder.cpp:53    INFO| Destroying cylinder 0x55bc345e6010
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]              Shape.cpp:15    INFO| Destroying shape 0x55bc345e6010
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]       RadioNuclide.cpp:48    INFO| Destroying RadioNuclide 0x55bc345e6080
-2022-03-01 13:31:58.059 (  37.120s) [main thread     ]         FileWriter.cpp:26    INFO| Destroying file writer 0x55bc338e0678
-2022-03-01 13:31:58.061 (  37.122s) [main thread     ]             loguru.cpp:523   INFO| atexit
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'w', verbosity: 9
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]               main.cpp:43    INFO| Starting PET Montecarlo simulation
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]               main.cpp:49    INFO| Choosen srand seed: 13973216
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]               main.cpp:55    INFO| Size of Data struct: 16 bytes
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]         FileWriter.cpp:42    INFO| { FILE WRITER
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]         FileWriter.cpp:43    WARN| .   File Writer Instantiated, should appear only once!
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]         FileWriter.cpp:44    INFO| .   Constructing at 0x55ee7f022af8
+2022-03-08 22:10:05.047 (   0.000s) [main thread     ]         FileWriter.cpp:48    INFO| .   Opening file: data/simulation/data.dat Binary Mode: 1
+2022-03-08 22:10:05.048 (   0.001s) [main thread     ]         FileWriter.cpp:48    INFO| .   Opening file: data/simulation/debug.dat Binary Mode: 0
+2022-03-08 22:10:05.048 (   0.001s) [main thread     ]         FileWriter.cpp:48    INFO| .   Opening file: data/simulation/data2.dat Binary Mode: 0
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]         FileWriter.cpp:48    INFO| .   Opening file: data/simulation/data3.dat Binary Mode: 0
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]         FileWriter.cpp:42    INFO| } 0.002 s: FILE WRITER
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:20    INFO| { RADIO NUCLIDE
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:24    INFO| .   Constructing at: 0x55ee7f5a9540
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:28    INFO| .   Activity: 3036624730.879133
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:32    INFO| .   lambda: 0.000152
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:36    INFO| .   N_0: 20000000000000.000000
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:40    INFO| .   tau: 6586.260000
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]       RadioNuclide.cpp:20    INFO| } 0.000 s: RADIO NUCLIDE
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]           Cylinder.cpp:19    INFO| { CYLINDER
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]           Cylinder.cpp:23    INFO| .   Constructing at: 0x55ee7f5a90d0
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]           Cylinder.cpp:28    INFO| .   Radius: 0.200000
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]           Cylinder.cpp:32    INFO| .   heigth: 0.000100
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]           Cylinder.cpp:19    INFO| } 0.000 s: CYLINDER
+2022-03-08 22:10:05.049 (   0.002s) [main thread     ]              Point.cpp:19    INFO| { Point
+2022-03-08 22:10:05.050 (   0.002s) [main thread     ]              Point.cpp:23    INFO| .   Constructing at: 0x55ee7f5a8c60
+2022-03-08 22:10:05.050 (   0.002s) [main thread     ]              Point.cpp:28    INFO| .   X: 0.000000
+2022-03-08 22:10:05.050 (   0.002s) [main thread     ]              Point.cpp:32    INFO| .   Y: 0.000000
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]              Point.cpp:36    INFO| .   Z: 0.000000
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]              Point.cpp:19    INFO| } 0.000 s: Point
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]             Source.cpp:25    INFO| { SOURCE
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]             Source.cpp:28    INFO| .   Constructing at: 0x55ee7f5a87f0
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]             Source.cpp:32    INFO| .   shape: 0x55ee7f5a8c60
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]             Source.cpp:36    INFO| .   radionuclide: 0x55ee7f5a9540
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]             Source.cpp:25    INFO| } 0.000 s: SOURCE
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:18    INFO| { DETECTOR RING
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:21    INFO| .   Constructing at: 0x55ee7f5a8080
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:25    INFO| .   Delta Omega: 0.087266rad
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:28    INFO| .   Detectors width: 10.000000m
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:31    INFO| .   Detectors center distance from origin: 6.000000m
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:34    INFO| .   Number of detectors: 72
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:37    INFO| .   Detectors height: 0.523931m
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]       DetectorRing.cpp:18    INFO| } 0.000 s: DETECTOR RING
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]               main.cpp:81    INFO| { SIMULATION
+2022-03-08 22:10:05.050 (   0.003s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.057 (   0.009s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.063 (   0.016s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.070 (   0.022s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.076 (   0.029s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.082 (   0.034s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.088 (   0.040s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.093 (   0.046s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.097 (   0.050s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.102 (   0.055s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.107 (   0.060s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.112 (   0.065s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.116 (   0.069s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.121 (   0.074s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.126 (   0.079s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.130 (   0.083s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.135 (   0.088s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.141 (   0.094s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.146 (   0.099s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.151 (   0.104s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.157 (   0.110s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.161 (   0.114s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.165 (   0.117s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.169 (   0.122s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.173 (   0.126s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.177 (   0.130s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.182 (   0.135s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.185 (   0.138s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.190 (   0.143s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.194 (   0.147s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.199 (   0.151s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.204 (   0.157s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.208 (   0.161s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.213 (   0.166s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.217 (   0.170s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.222 (   0.175s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.227 (   0.180s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.231 (   0.184s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.235 (   0.188s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.240 (   0.193s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.244 (   0.197s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.248 (   0.201s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.253 (   0.206s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.258 (   0.210s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.262 (   0.215s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.266 (   0.219s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.271 (   0.224s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.276 (   0.229s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.281 (   0.234s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.286 (   0.239s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.290 (   0.243s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.295 (   0.248s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.299 (   0.252s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.304 (   0.257s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.309 (   0.262s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.313 (   0.266s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.317 (   0.270s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.323 (   0.276s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.327 (   0.280s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.331 (   0.284s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.336 (   0.289s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.341 (   0.294s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.345 (   0.297s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.349 (   0.302s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.354 (   0.307s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.359 (   0.312s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.363 (   0.316s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.367 (   0.320s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.373 (   0.326s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.377 (   0.330s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.381 (   0.334s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.386 (   0.339s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.390 (   0.343s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.394 (   0.347s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.399 (   0.352s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.404 (   0.357s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.409 (   0.362s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.413 (   0.366s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.417 (   0.370s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.422 (   0.375s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.426 (   0.379s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.431 (   0.383s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.434 (   0.387s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.440 (   0.393s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.444 (   0.397s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.451 (   0.404s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.456 (   0.408s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.461 (   0.414s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.465 (   0.418s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.470 (   0.423s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.475 (   0.428s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.479 (   0.432s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.482 (   0.435s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.487 (   0.440s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.492 (   0.445s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.496 (   0.449s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.500 (   0.453s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.505 (   0.458s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.509 (   0.462s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.513 (   0.466s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.517 (   0.470s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.523 (   0.475s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.527 (   0.480s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.531 (   0.484s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.536 (   0.489s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.541 (   0.493s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.545 (   0.498s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.549 (   0.502s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.555 (   0.507s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.559 (   0.511s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.563 (   0.516s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.570 (   0.523s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.575 (   0.528s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.578 (   0.531s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.584 (   0.537s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.589 (   0.542s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.593 (   0.546s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.597 (   0.550s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.601 (   0.554s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.607 (   0.560s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.611 (   0.564s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.616 (   0.569s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.622 (   0.575s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.628 (   0.581s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.634 (   0.587s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.641 (   0.594s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.646 (   0.599s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.652 (   0.605s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.657 (   0.610s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.662 (   0.615s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.667 (   0.620s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.672 (   0.624s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.677 (   0.630s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.683 (   0.636s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.690 (   0.643s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.695 (   0.648s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.701 (   0.654s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.708 (   0.661s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.714 (   0.667s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.721 (   0.674s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.727 (   0.680s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.733 (   0.686s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.739 (   0.692s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.745 (   0.698s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.753 (   0.706s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.758 (   0.711s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.763 (   0.716s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.771 (   0.723s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.777 (   0.730s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.785 (   0.737s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.792 (   0.744s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.796 (   0.749s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.802 (   0.754s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.809 (   0.762s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.813 (   0.766s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.818 (   0.771s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.824 (   0.776s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.830 (   0.783s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.837 (   0.789s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.843 (   0.796s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.849 (   0.802s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.855 (   0.808s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.860 (   0.813s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.865 (   0.818s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.870 (   0.823s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.875 (   0.828s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.879 (   0.832s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.884 (   0.837s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.890 (   0.843s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.894 (   0.847s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.898 (   0.851s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.905 (   0.858s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.910 (   0.863s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.916 (   0.869s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.921 (   0.874s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.925 (   0.878s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.929 (   0.882s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.935 (   0.888s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.940 (   0.893s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.945 (   0.897s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.949 (   0.902s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.954 (   0.907s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.958 (   0.911s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.962 (   0.915s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.967 (   0.920s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.973 (   0.926s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.977 (   0.930s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.981 (   0.934s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.986 (   0.939s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.991 (   0.944s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:05.996 (   0.949s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.000 (   0.953s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.006 (   0.958s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.011 (   0.964s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.016 (   0.969s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.021 (   0.974s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.026 (   0.979s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.030 (   0.983s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.034 (   0.987s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.039 (   0.992s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.043 (   0.996s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.047 (   1.000s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.052 (   1.005s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.057 (   1.010s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.061 (   1.014s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.065 (   1.018s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.071 (   1.024s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.075 (   1.028s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.079 (   1.032s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.083 (   1.036s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.089 (   1.042s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.093 (   1.046s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.097 (   1.050s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.101 (   1.054s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.107 (   1.060s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.111 (   1.064s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.116 (   1.069s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.120 (   1.073s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.126 (   1.079s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.131 (   1.084s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.136 (   1.089s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.141 (   1.094s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.145 (   1.098s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.149 (   1.102s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.154 (   1.107s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.158 (   1.111s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.163 (   1.115s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.168 (   1.121s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.172 (   1.125s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.177 (   1.130s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.181 (   1.134s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.186 (   1.139s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.191 (   1.144s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.195 (   1.148s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.199 (   1.152s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.204 (   1.157s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.210 (   1.163s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.215 (   1.168s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.220 (   1.172s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.224 (   1.177s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.230 (   1.183s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.234 (   1.187s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.239 (   1.192s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.243 (   1.196s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.248 (   1.201s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.253 (   1.206s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.257 (   1.210s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.261 (   1.214s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.265 (   1.218s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.271 (   1.224s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.276 (   1.229s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.280 (   1.233s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.285 (   1.238s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.290 (   1.243s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.294 (   1.247s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.300 (   1.253s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.306 (   1.259s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.310 (   1.263s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.314 (   1.267s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.318 (   1.271s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.323 (   1.276s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.327 (   1.280s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.332 (   1.285s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.337 (   1.290s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.342 (   1.294s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.346 (   1.299s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.352 (   1.305s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.357 (   1.310s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.361 (   1.314s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.367 (   1.320s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.373 (   1.326s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.378 (   1.331s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.382 (   1.335s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.388 (   1.341s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.393 (   1.346s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.398 (   1.350s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.402 (   1.355s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.407 (   1.360s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.411 (   1.364s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.416 (   1.369s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.421 (   1.374s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.426 (   1.379s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.430 (   1.383s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.433 (   1.386s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.438 (   1.391s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.443 (   1.396s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.447 (   1.400s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.452 (   1.405s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.458 (   1.411s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.461 (   1.414s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.465 (   1.418s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.470 (   1.423s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.475 (   1.428s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.478 (   1.431s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.484 (   1.437s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.488 (   1.441s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.493 (   1.445s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.497 (   1.449s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.502 (   1.455s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.507 (   1.460s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.511 (   1.464s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.516 (   1.469s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.521 (   1.474s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.525 (   1.478s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.529 (   1.482s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.534 (   1.487s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.540 (   1.493s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.544 (   1.497s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.549 (   1.502s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.556 (   1.509s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.560 (   1.513s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.564 (   1.517s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.569 (   1.522s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.574 (   1.527s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.578 (   1.531s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.582 (   1.535s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.587 (   1.540s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.591 (   1.544s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.595 (   1.548s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.599 (   1.552s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.603 (   1.556s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.608 (   1.561s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.612 (   1.565s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.616 (   1.569s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.622 (   1.575s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.627 (   1.580s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.631 (   1.583s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.636 (   1.589s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.641 (   1.594s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.645 (   1.598s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.649 (   1.602s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.655 (   1.608s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.660 (   1.612s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.663 (   1.616s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.668 (   1.621s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.674 (   1.627s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.677 (   1.630s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.681 (   1.634s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.685 (   1.638s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.690 (   1.643s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.694 (   1.647s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.697 (   1.650s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.705 (   1.658s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.710 (   1.663s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.714 (   1.667s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.719 (   1.672s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.725 (   1.678s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.729 (   1.682s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.736 (   1.689s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.740 (   1.693s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.744 (   1.697s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.749 (   1.702s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.755 (   1.707s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.759 (   1.712s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.764 (   1.716s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.769 (   1.722s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.774 (   1.726s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.778 (   1.731s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.782 (   1.735s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.786 (   1.739s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.791 (   1.744s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.795 (   1.747s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.799 (   1.752s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.803 (   1.756s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.808 (   1.760s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.811 (   1.764s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.815 (   1.768s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.820 (   1.772s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.825 (   1.778s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.828 (   1.781s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.833 (   1.786s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.839 (   1.792s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.844 (   1.796s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.848 (   1.801s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.853 (   1.806s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.858 (   1.811s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.862 (   1.815s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.868 (   1.821s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.874 (   1.826s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.877 (   1.830s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.881 (   1.834s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.885 (   1.838s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.890 (   1.843s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.894 (   1.847s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.899 (   1.852s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.905 (   1.857s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.909 (   1.862s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.912 (   1.865s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.918 (   1.871s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.924 (   1.877s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.928 (   1.881s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.932 (   1.885s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.938 (   1.891s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.943 (   1.896s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.952 (   1.905s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.959 (   1.912s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.963 (   1.916s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.968 (   1.921s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.975 (   1.928s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.979 (   1.932s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.983 (   1.936s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.988 (   1.941s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.993 (   1.946s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:06.997 (   1.950s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.002 (   1.955s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.006 (   1.959s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.011 (   1.963s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.014 (   1.967s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.018 (   1.971s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.024 (   1.977s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.029 (   1.982s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.034 (   1.987s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.040 (   1.992s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.044 (   1.997s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.048 (   2.001s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.053 (   2.006s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.058 (   2.011s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.062 (   2.015s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.066 (   2.019s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.072 (   2.025s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.077 (   2.030s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.081 (   2.034s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.087 (   2.040s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.092 (   2.045s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.096 (   2.049s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.102 (   2.055s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.108 (   2.061s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.112 (   2.065s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.116 (   2.069s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.121 (   2.074s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.125 (   2.078s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.129 (   2.082s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.134 (   2.087s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.139 (   2.092s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.143 (   2.096s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.147 (   2.100s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.153 (   2.106s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.158 (   2.111s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.163 (   2.115s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.167 (   2.120s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.172 (   2.125s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.176 (   2.129s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.180 (   2.133s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.185 (   2.138s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.190 (   2.143s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.194 (   2.147s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.198 (   2.151s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.204 (   2.157s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.209 (   2.162s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.213 (   2.165s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.217 (   2.170s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.222 (   2.175s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.228 (   2.181s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.233 (   2.186s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.239 (   2.192s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.243 (   2.196s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.247 (   2.200s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.252 (   2.205s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.258 (   2.210s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.261 (   2.214s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.265 (   2.218s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.271 (   2.224s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.275 (   2.228s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.279 (   2.232s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.284 (   2.237s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.289 (   2.242s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.293 (   2.246s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.297 (   2.250s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.302 (   2.255s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.308 (   2.261s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.312 (   2.265s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.316 (   2.269s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.322 (   2.275s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.326 (   2.279s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.330 (   2.283s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.335 (   2.288s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.341 (   2.293s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.345 (   2.298s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.349 (   2.302s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.354 (   2.307s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.359 (   2.312s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.363 (   2.316s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.367 (   2.320s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.372 (   2.325s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.377 (   2.330s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.381 (   2.334s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.387 (   2.340s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.391 (   2.344s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.396 (   2.349s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.400 (   2.353s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.405 (   2.358s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.410 (   2.362s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.414 (   2.367s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.419 (   2.372s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.424 (   2.377s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.428 (   2.381s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.433 (   2.386s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.437 (   2.390s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.443 (   2.395s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.447 (   2.400s) [main thread     ]             Source.cpp:84    WARN| .   Number of decays in 0.000000s is 303
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]               main.cpp:139   INFO| .   Total number of decayed nuclei: 151500
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]               main.cpp:140   INFO| .   Number of detected photons: 0
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]               main.cpp:81    INFO| } 2.402 s: SIMULATION
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]       DetectorRing.cpp:50    INFO| Destroying detectors ring 0x55ee7f5a8080
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]             Source.cpp:62    INFO| Destroying Source Object 0x55ee7f5a87f0
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]              Point.cpp:58    INFO| Destroying Point 0x55ee7f5a8c60
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]              Shape.cpp:15    INFO| Destroying shape 0x55ee7f5a8c60
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]       RadioNuclide.cpp:48    INFO| Destroying RadioNuclide 0x55ee7f5a9540
+2022-03-08 22:10:07.452 (   2.405s) [main thread     ]         FileWriter.cpp:29    INFO| Destroying file writer 0x55ee7f022af8
+2022-03-08 22:10:07.454 (   2.407s) [main thread     ]             loguru.cpp:523   INFO| atexit

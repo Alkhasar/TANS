@@ -60,13 +60,29 @@ DetectorRing::~DetectorRing(){
  */
 double* DetectorRing::checkInteraction(double* P, double* angles){
     double time = 0;
-    for(int i = 0; i < n; i++){
-        // Retrieve interaction deltaT from creation to hit
-        time = detectors[i]->interaction(P, angles); // Outside of debig should be only time
-        if(time != 0){
-            // if a time has been given return it with detector number
-            return (new double[2]{(double) i, time});
+    if(t){
+        for(int i = 0; i < n; i++){
+            // Retrieve interaction deltaT from creation to hit
+            time = detectors[i]->interaction(P, angles); // Outside of debug should be only time
+            if(time != 0){
+                t = !t;
+                // if a time has been given return it with detector number
+                return (new double[2]{(double) i, time});
+            }
         }
+        
+        t = !t;
+    } else {
+        for(int i = n; i > 0; i--){
+            // Retrieve interaction deltaT from creation to hit
+            time = detectors[i - 1]->interaction(P, angles); // Outside of debug should be only time
+            if(time != 0){
+                t = !t;
+                // if a time has been given return it with detector number
+                return (new double[2]{(double) i - 1, time});
+            }
+        }
+        t = !t;
     }
     return nullptr;
 }

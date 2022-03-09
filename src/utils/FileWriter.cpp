@@ -5,7 +5,10 @@
 #include "../../libs/loguru/loguru.hpp"
 
 // Declaring a static constant path to the file
-const std::string FileWriter::path[] = {"data/simulation/data.dat", "data/simulation/debug.dat"};
+const std::string FileWriter::path[] = {"data/simulation/data.dat", "data/simulation/debug.dat", "data/simulation/data2.dat", "data/simulation/data3.dat"};
+    
+// Declaring static constant for binary file access
+const bool FileWriter::bin[] = {1, 0, 0, 0};
 
 /**
  * @brief This function alows access to the file writer instance
@@ -42,12 +45,26 @@ FileWriter::FileWriter(){
 
     file = new std::fstream*[nFiles];
     for(int i = 0; i < nFiles; i++){    
-        LOG_F(INFO, "Opening file: %s", path[i].c_str());
-        file[i] = new std::fstream(path[i], std::fstream::in | std::fstream::out | std::fstream::trunc);
+        LOG_F(INFO, "Opening file: %s Binary Mode: %i", path[i].c_str(), (int) bin[i]);
+        file[i] = new std::fstream(path[i], (bin[i]) ? (std::fstream::in | std::fstream::out | std::fstream::trunc |  std::fstream::binary ) : (std::fstream::in | std::fstream::out | std::fstream::trunc));
         if(file[i]->is_open() == false) {
             LOG_F(ERROR, "The file at %s does not exist!\n", path[i].c_str());
             exit(1);
         }
+    }
+}
+
+/**
+ * @brief Method to save data inside or opened file
+ * 
+ * @param data a string to save
+ */
+void FileWriter::writeData(int i, Data data){
+    if(file[i]->is_open()){
+        file[i]->write((char*)&data, sizeof(Data));
+    } else {
+        LOG_F(ERROR, "The data file has unexpectedly closed!");
+        throw std::runtime_error("The data file has unexpectedly closed!");
     }
 }
 
