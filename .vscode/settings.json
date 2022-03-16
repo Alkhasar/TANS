@@ -86,5 +86,6 @@
         "filesystem": "cpp",
         "regex": "cpp",
         "version": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

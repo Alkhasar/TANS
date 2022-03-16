@@ -6,7 +6,7 @@
 #include <iostream>
 
 // Declaring a static constant path to the file
-const std::string FileReader::path[] = {"data/simulation/data.dat"};
+const std::string FileReader::path[] = {"data/simulation/data0.dat"};
 
 // Declaring static constant for binary file access
 const bool FileReader::bin[] = {1};

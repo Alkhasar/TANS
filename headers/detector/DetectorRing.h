@@ -13,6 +13,9 @@ class DetectorRing{
         // Getters
         int getNumberOfDetectors(){return n;}
         double* checkInteraction(double*, double*);
+        void drawDetector();
+        void addData(int, Data&);
+        void saveData();
 
     private:
         Detector **detectors;

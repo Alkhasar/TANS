@@ -15,7 +15,7 @@ class FileWriter{
         
         ~FileWriter();
         void writeData(int, Data);
-        void writeData(int, std::string);
+        void writeData(int, const std::string&);
         
     private:
         // Singleton Pattern

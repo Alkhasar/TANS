@@ -19,6 +19,7 @@
 #include "src/detector/DetectorRing.cpp"
 #include "src/utils/FileWriter.cpp"
 #include "src/utils/utilities.cpp"
+#include "src/Time.cpp"
 
 using namespace std;
 
@@ -32,8 +33,6 @@ using namespace std;
  */
 int main(int argc, char *argv[]){
 //int main(){
-    //int argc = 2;
-   //char** argv = new char*[argc]{"main.cpp", "PROGRAMMA"};
 
     // Starting loguru
     loguru::init(argc, argv);
@@ -63,15 +62,10 @@ int main(int argc, char *argv[]){
 
     // Creating our setup
     RadioNuclide *F18 = new RadioNuclide(1./(109.771*60), 2*10e12);
-    Shape *cylinder = new Cylinder(0.2, 0.0001);
-    Point* point = new Point(0., 0., 0.);
-    Source *source = new Source(point, F18);
-    DetectorRing *ring = new DetectorRing(72, 6., 10.);
-
-    // Current Simulation Time
-    double simulationTime = 0;
-    double maxSimulationTime = 5e-5;
-    double simulationStep = 1e-7;
+    Shape *cylinder = new Cylinder(3.0, 3.0);
+    //Point* point = new Point(2., -2., 2.);
+    Source *source = new Source(cylinder, F18);
+    DetectorRing *ring = new DetectorRing(200, 6., 10.);
 
     // Utils Variables
     int totalDecays = 0;
@@ -81,45 +75,46 @@ int main(int argc, char *argv[]){
         LOG_SCOPE_F(INFO,"SIMULATION"); // 1.524506e-4s per operazione Senza ottimizzazione
                                         // 374.371s per 10^8 dati -> 537Mb File, 1676Mb Debug -> 3.74371us per ciclo -Ofast
                                         // 311.723s per 10^8 dati (No debug) -> 537Mb ->3.11723us per ciclo -Ofast 16.7% più veloce
-
         // Simulation cycle
-        while(simulationTime < maxSimulationTime){
-
-            // Adding simulation time
-            simulationTime += simulationStep;
+        while(Time::getTime().update()){
 
             // Evaluating number of decays
-            double numberOfDecays = source->timeStepDecays(simulationTime);
+            double numberOfDecays = source->timeStepDecays(Time::getTime().getSimulationTime());
             
             for(int n = 0; n < numberOfDecays; n++){
                 // Sampling position and angles
                 double* P = source->samplePosition(); // P1 points to sampled point
                 double** angles = source->sampleAngles(); // w1, w2, t1, -t1 ---> t2 = sgn(t1)*pi/2-t1
-                
+
                 // Preparing data holder
                 double* data = nullptr;
 
-                // For every detector
-                for(int i = 0; i < 1; i++){            // Check both photons
+                // For each of the 2 emitted photons
+                for(int i = 0; i < 2; i++){            
+                    // Check both photons
                     data = ring->checkInteraction(P, angles[i]);
-                
-                    if(data != nullptr){
-                        // Data string
-                        string msg2;
-                        Data msg{(uint32_t) n + totalDecays, (uint8_t) data[0], data[1] + ((simulationTime - simulationStep) + ((double)rand()/RAND_MAX)*simulationStep*1e9) + gaussianRejection(0., (250*1e-3)/(2*sqrt(2*log(2))))};
 
-                        // Saving number of detector, time
-                        msg2 = to_string(n + totalDecays) + "," + to_string((int)data[0]) + "," + to_string(data[1] + ((simulationTime - simulationStep) + ((double)rand()/RAND_MAX)*simulationStep*1e9) + gaussianRejection(0., (250*1e-3)/(2*sqrt(2*log(2))))); // FWHM = 250ps
-                        fileWriter.writeData(0, msg);
-                        //fileWriter.writeData(2, msg2);
-                        // detectedDecays++;
-                        
+                    // Saving angles data to file
+                    string dataB = to_string(angles[i][0])+","+to_string(angles[i][1]);
+                    FileWriter::getInstance().writeData(1, dataB);  
+
+                    if(data != nullptr){
+                        // Data to save
+                        uint32_t event      = n + totalDecays;
+                        uint8_t  detector   = data[0];
+                        double time         = data[1] + ((Time::getTime().getSimulationTime() - Time::getTime().getTimeStep())*1e9 + ((double)rand()/RAND_MAX)*Time::getTime().getTimeStep()*1e9) + gaussianRejection(0., (250*1e-3)/(2*sqrt(2*log(2))));
+
+                        // Data string
+                        Data msg {event, detector, time};
+                        ring->addData((int) data[0], msg);
+
+                        // Tracking detected decays
+                        detectedDecays++;
+
                         // Removing this delete will inevitably cause a memory leak
                         delete[] data;
                     }
                 }
-                
-                
 
                 // Removing these deletes will inevitably cause a memory leak
                 delete[] P;
@@ -128,12 +123,12 @@ int main(int argc, char *argv[]){
                 delete[] angles;
 
                 // Tracking total number of decays
-                // totalDecays++;
+                totalDecays++;
             }
 
-            
             // Tracking total number of decays assuming A(t) constant in dt
-            totalDecays += numberOfDecays;
+            // totalDecays += numberOfDecays;
+            ring->saveData();
 
         }
         LOG_F(INFO, "Total number of decayed nuclei: %i", totalDecays);
@@ -143,10 +138,6 @@ int main(int argc, char *argv[]){
     // Freeing memory
     delete ring;
     delete source;
-    
-    /************
-     *  ANALISI *
-     ************/
 
     
 

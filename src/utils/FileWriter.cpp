@@ -5,7 +5,7 @@
 #include "../../libs/loguru/loguru.hpp"
 
 // Declaring a static constant path to the file
-const std::string FileWriter::path[] = {"data/simulation/data.dat", "data/simulation/debug.dat", "data/simulation/data2.dat", "data/simulation/data3.dat"};
+const std::string FileWriter::path[] = {"data/simulation/data0.dat", "data/simulation/data1.dat", "data/simulation/data2.dat", "data/simulation/data3.dat"};
     
 // Declaring static constant for binary file access
 const bool FileWriter::bin[] = {1, 0, 0, 0};
@@ -73,7 +73,7 @@ void FileWriter::writeData(int i, Data data){
  * 
  * @param data a string to save
  */
-void FileWriter::writeData(int i, std::string data){
+void FileWriter::writeData(int i, const std::string& data){
     if(file[i]->is_open()){
         *file[i] << data << std::endl;
     } else {
