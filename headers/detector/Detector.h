@@ -1,55 +1,61 @@
 #ifndef DETECTOR
 #define DETECTOR
 
-#include "../../headers/utils/Data.h"
+// STD includes
 #include <vector>
 
-class Detector{
+// Project Struct include
+#include "../../headers/utils/Data.h"
+
+// Project includes
+#include "geometry/Plane.h"
+
+
+class Detector {
     public:
-        // Constructor Destructor
+        // Constructor
         Detector(double, double, double, double);
+
+        // Destructor
         ~Detector();
-        Detector(Detector const&);
-        void operator=(Detector const&);
 
-        // Method to check interaction
-        double interaction(double*, double*);
+        // Copy constructor
+        Detector(const Detector&);
 
-        // Getters
-        double** getVertex();
-        double* getVertex(int);
-        double getOmega();
-        double getDeltaOmega();
-
-        // Function to sample a point on the detector, used for debug purpose
-        double* samplePoint();
+        // Function to add hit to buffer
+        void addData(Data&);
+        std::vector<Data> getData(){return data_;};
+        void clearData(){data_.clear();};
 
         // Function to check if the detector is paralysed
         bool paralysed(double);
 
-        // Function to add hit to buffer
-        void addData(Data&);
-        vector<Data> getData(){return data;};
-        void clearData(){data.clear();};
+        // Method to check interaction
+        double checkInteraction(double*, double*);
+
 
     private:
     
         // Constructor private to avoid default instance
         Detector();
 
-        double a=0, b=0, c=0, d=0;  // Detector Plane Parameters
-        double lastTimeHit = 0;     // Time of Last hit on the detector
-        double omega = 0;           // Zenital angle from the origin
-        double w = 0, h = 0;        // Detector width and heigth
-        double r = 0;               // Distance from the detector center to Origin
-        double deltaOmega = 0;      // Aperture angle y
-        double deltaTheta = 0;      // Aperture angle xz
-        double timeResolution = 2;  // Detector resolution in ns 
+        // Detector plane
+        Plane* plane_;
 
-        double* center;             // Detector center coordinater
-        double** vertex;            // List of the 4 main vertex
-        double* normalVector;       // Detector plane normal vector
-        vector<Data> data;
-};              
+        // Detector parameters
+        double width_ = 0, heigth_ = 0;
+        double phi_ = 0;
+        double deltaPhi_ = 0;
+        double distance_ = 0;
+
+        // Data vector to check paralysed state
+        std::vector<Data> data_;
+
+        // Time of Last hit on the detector in ns
+        double lastHit_ = 0;
+
+        // Detector resolution in ns 
+        double timeResolution_ = 0.;  
+};   
 
 #endif

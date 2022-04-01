@@ -4,33 +4,27 @@
 class RadioNuclide {
     public:
         // Constructor
-        ~RadioNuclide();
         RadioNuclide(double, double);
+
+        // Copy constructor
         RadioNuclide(const RadioNuclide&);
+
+        // Destructor
+        ~RadioNuclide();
 
         // Methods
         double **sample();
 
         // Getters
-        double getLambda();
         double getN(double);
-        double getA(double);
-        double getTau();
-        double getElapsedTime();
-        double getConfidency();
-
-        //Setters
-        void addElapsedTime(double);
 
     private:
         // Private constructor to avoid empty initialization
         RadioNuclide();
         
-        double lambda = 0;  // Decay constant
-        double N_0 = 0;       // Initial Radionuclides
-        double A_0 = 0;       // Activity
-        double tau = 0;     // Half life
-        double confidency = 0.05; // Gaussian distribution sigma (std of activity in %) 
-        double elapsedTime = 0; // Elapsed time
+        double lambda_ = 0;     // Decay constant
+        double N0_ = 0;         // Initial Radionuclides
+        double A0_ = 0;         // Activity
+        double tau_ = 0;        // Half life
 };
 #endif

@@ -1,82 +1,56 @@
-// Project includes
-#include "../../headers/detector/Detector.h"
-#include "../../headers/utils/FileWriter.h"
-#include "../../src/utils/utilities.cpp"
-#include "../../headers/Time.h"
-
-// std includes
+// STD includes
 #include <math.h>
-#include <iostream>
-#include <random>
+#include <string>
 
-// external libs
+// External includes
 #include "../../libs/loguru/loguru.hpp"
 
+// Project includes
+#include "../../headers/detector/Detector.h"
+#include "../../src/utils/utilities.cpp"
+#include "../../headers/utils/FileWriter.h"
 /**
  * @brief Construct a new Detector starting by a base detector centered in (r, 0, 0) with width w
  * and heigth h, and rotates it along the z azis by an angle omega
  * 
- * @param w detector width, direction along z
- * @param h detector heigth, direction along y
+ * @param width detector width, direction along z
+ * @param heigth detector heigth, direction along y
  * @param omega rotation angle centered on z axis
- * @param r distance of detector center to origin
+ * @param distance distance of detector center to origin
  */
-Detector::Detector(double w, double h, double omega, double r){
+Detector::Detector(double width, double heigth, double phi, double distance){
     // Changing log scope
     LOG_SCOPE_F(INFO,"DETECTOR");
 
     // Logging construction
     LOG_F(INFO, "Constructing at: %p", (void*) this);
     
-    this->w = w; // Dimension along z
-    LOG_F(INFO, "Width: %lfm", w);
+    width_ = width; // Dimension along z
+    LOG_F(INFO, "Width: %lfm", width_);
 
-    this->h = h; // Dimension along y
-    LOG_F(INFO, "Heigth: %lfm", h);
+    heigth_ = heigth; // Dimension along y
+    LOG_F(INFO, "Heigth: %lfm", heigth_);
 
-    this->omega = omega;
-    LOG_F(INFO, "Omega: %lfrad", omega);
+    phi_ = phi;
+    LOG_F(INFO, "Phi: %lfrad", phi_);
 
-    this->deltaOmega = atan(h/(2*r)); // Half aperture angle from center in y direction
-    LOG_F(INFO, "Width: %lfrad", deltaOmega);
+    deltaPhi_ = atan(heigth_/(2*distance_)); // Half aperture angle from center in y direction
+    LOG_F(INFO, "DeltaPhi: %lfrad", deltaPhi_);
 
-    this->deltaTheta = atan(w/(2*r)); // Half aperture angle from center in z direction
-    LOG_F(INFO, "DeltaTheta: %lfrad", deltaTheta);
-
-    this->r = r;
-    LOG_F(INFO, "Radius: %lfm", r);
+    distance_ = distance;
+    LOG_F(INFO, "Distance from origin: %lfm", distance_);
 
     // Declaring vertex array
-    vertex = new double*[4];
+    double** vertex = new double*[4];
 
     // Assigning vertes with rotations
-    vertex[0] = zAxisRotation(new double[3]{r, h/2, w/2}, omega);
-    vertex[1] = zAxisRotation(new double[3]{r, h/2, -w/2}, omega);
-    vertex[2] = zAxisRotation(new double[3]{r, -h/2, -w/2}, omega);   
-    vertex[3] = zAxisRotation(new double[3]{r, -h/2, w/2}, omega);
+    vertex[0] = zAxisRotation(new double[3]{distance_, heigth_/2, width_/2}, phi_);
+    vertex[1] = zAxisRotation(new double[3]{distance_, heigth_/2, -width_/2}, phi_);
+    vertex[2] = zAxisRotation(new double[3]{distance_, -heigth_/2, -width_/2}, phi_);   
+    vertex[3] = zAxisRotation(new double[3]{distance_, -heigth_/2, width_/2}, phi_);
 
-    for(int i = 0; i < 4; i++){
-        LOG_F(INFO, "Detector Vertex: v%i=(%lf, %lf, %lf)", i, vertex[i][0], vertex[i][1], vertex[i][2]);
-    }
-
-
-    // Getting plane parameters
-    a = (vertex[1][1] - vertex[0][1]) * (vertex[2][2] - vertex[0][2]) -( vertex[1][2] -vertex[0][2]) * (vertex[2][1] - vertex[1][1]);
-    b = -(vertex[1][0] - vertex[0][0]) * (vertex[2][2]- vertex[0][2]) + ( vertex[1][2] - vertex[0][2]) * (vertex[2][0] - vertex[0][0]);
-    c = (vertex[1][0] - vertex[0][0]) * (vertex[2][1] - vertex[0][1]) - (vertex[1][1] - vertex[0][1]) * (vertex[2][0] - vertex[0][0]);
-    d = -a*vertex[0][0] - b*vertex[0][1] - c*vertex[0][2];
-    LOG_F(INFO, "Detector Plane parameters: a=%lf b=%lf c=%lf d=%lf)", a, b, c, d);
-    
-    // Detector center
-    center = zAxisRotation(new double[3]{r, 0, 0}, omega);
-    LOG_F(INFO, "Center Point: (%lf, %lf, %lf)", center[0], center[1], center[2]);
-    
-
-    // Plane normal vector
-    double norm = sqrt(a*a+b*b+c*c);
-    this->normalVector = new double[3]{a/norm, b/norm, c/norm};
-    LOG_F(INFO, "Normal Vector: n=(%lf, %lf, %lf)", normalVector[0], normalVector[1], normalVector[2]);
-    
+    // Generating detector planar surface
+    plane_ = new Plane(vertex);
 }
 
 /**
@@ -85,13 +59,9 @@ Detector::Detector(double w, double h, double omega, double r){
  */
 Detector::~Detector(){
     LOG_F(INFO, "Destroying Detector %p", (void*) this);
-    for(int i = 0; i < 4; i++){
-        delete[] vertex[i];
-    }
-    delete[] vertex;
-    delete[] normalVector;
-    delete[] center;
+    delete plane_;
 }
+
 
 /**
  * @brief Detector copy constructor
@@ -99,71 +69,17 @@ Detector::~Detector(){
  * @param src The source detector to copy
  */
 Detector::Detector(const Detector& src):
-    w(src.w),
-    h(src.h),
-    omega(src.omega),
-    deltaOmega(src.deltaOmega),
-    deltaTheta(src.deltaTheta),
-    r(src.r),
-    a(src.a),
-    b(src.b),
-    c(src.b),
-    d(src.b)
+    width_(src.width_),
+    heigth_(src.heigth_),
+    phi_(src.phi_),
+    deltaPhi_(src.deltaPhi_),
+    distance_(src.distance_)
 {   
     
     LOG_F(INFO, "Copying detector %p into %p", (void*) &src, (void*) this);
-
-    // Declaring dynamic arrays
-    vertex = new double*[4];
-    center = new double[3];
-    normalVector = new double[3];
-
-    // Assigning values to vertex
-    for(int i = 0; i < 4; i++){
-        vertex[i] = src.vertex[i];
-    }
-
-    // Assigning values to center and normal vector
-    for(int i = 0; i < 3; i++){
-        center[i] = src.center[i];
-        normalVector[i] = src.normalVector[i];
-    }
-}
-
-/**
- * @brief Getter for the 4 base vertex
- * 
- * @return 2d array of vertex
- */
-double** Detector::getVertex(){
-    return vertex;
-}
-
-/**
- * @brief Getter for the 4 base vertex
- * 
- * @return 2d array of vertex
- */
-double* Detector::getVertex(int i){
-    return vertex[i];
-}
-
-/**
- * @brief Getter for the omega angle
- * 
- * @return the omega angle as double
- */
-double Detector::getOmega(){
-    return omega;
-}
-
-/**
- * @brief Getter for the deltaOmegaAngle
- * 
- * @return deltaOmega angle as double 
- */
-double Detector::getDeltaOmega(){
-    return deltaOmega;
+    
+    // Copying plane
+    plane_ = new Plane(*src.plane_);
 }
 
 /**
@@ -172,7 +88,7 @@ double Detector::getDeltaOmega(){
  * @param data to add
  */
 void Detector::addData(Data& data){
-    this->data.push_back(data);
+    data_.push_back(data);
 }
 
 /**
@@ -183,25 +99,14 @@ void Detector::addData(Data& data){
  * @return false if deltaTime < 2ns
  */
 bool Detector::paralysed(double time){
-    if(time - lastTimeHit > timeResolution){
-        lastTimeHit = time;
+    if(time - lastHit_ > timeResolution_){
+        lastHit_ = time;
         return false;
     }
+     
     return true;
 }
 
-/**
- * @brief Method to return a random point on the surface
- * 
- * @return double* 
- */
-double* Detector::samplePoint(){
-    double X = r;
-    double Y = -h/2 + ((double) rand()/RAND_MAX)*(h);
-    double Z = -w/2 + ((double) rand()/RAND_MAX)*(w);  
-
-    return zAxisRotation(new double[3]{X, Y, Z}, omega);
-}
 
 /**
  * @brief Checks if a photon emitted from P with angle omega, theta interacts
@@ -211,58 +116,85 @@ double* Detector::samplePoint(){
  * @param angles photon (omega, theta)
  * @return interaction time
  */
-double Detector::interaction(double* P, double* angles){    
+double Detector::checkInteraction(double* P, double* angles){  
+
+    static FileWriter& fileWriter= FileWriter::getInstance();
+
+    // Locally referencing photon angles
+    double phi      = angles[0];
+    double theta    = angles[1];
+
+    // Locally referencing photon emission point
+    double xGamma   = P[0];
+    double yGamma   = P[1];
+    double zGamma   = P[2];
+
+    // Calculating NORMALISED line director
+    double l        = sin(theta)*cos(phi);
+    double m        = sin(theta)*sin(phi);
+    double n        = cos(theta);
     
-    // Declaring omega, theta
-    double omega = angles[0];
-    double theta = angles[1];
+    // Calculating intersection parameter
+    // double dn = plane_->a_*(l + xGamma) + plane_->b_*(m + yGamma) + plane_->c_*(n + zGamma);
+    double dn = plane_->a_*l + plane_->b_*m  + plane_->c_*n;
+    double t = -(plane_->d_ + plane_->a_*xGamma + plane_->b_*yGamma + plane_->c_*zGamma)/dn;
     
-    // Radius for angles
-    double k = 2*sqrt(P[0]*P[0]+P[1]*P[1]+P[2]*P[2]);
+    // Intersection Point
+    double x = xGamma + l * t;
+    double y = yGamma + m * t;
+    double z = zGamma + n * t;
 
-    // second point
-    double xq = k*cos(omega)*sin(theta);
-    double yq = k*sin(omega)*sin(theta);
-    double zq = k*cos(theta); 
+    LOG_IF_F(ERROR, x == INFINITY || y == INFINITY || z == INFINITY, "Something went to infinity : Detector.cpp");
+    LOG_IF_F(ERROR, x == NAN || y == NAN || z == NAN, "Something is not a number : Detector.cpp");
 
-    double norm = sqrt((xq - P[0])*(xq - P[0])+(yq - P[1])*(yq - P[1])+(zq - P[2])*(zq - P[2]));
+    #if DEBUG_HIT == 1
+        LOG_F(ERROR, "______________________________________________"); 
+        LOG_F(WARNING, "l=%f m=%f n=%f", l, m, n);
+        LOG_F(ERROR, "a=%f b=%f c=%f d=%f", plane_->a_, plane_->b_, plane_->c_, plane_->d_);
+        LOG_F(INFO, "dn=%f", dn);
+        LOG_F(WARNING, "xGamma=%f l=%f t=%f", xGamma, l, t);    
+        LOG_F(WARNING, "yGamma=%f m=%f t=%f", yGamma, m, t);    
+        LOG_F(WARNING, "zGamma=%f n=%f t=%f", zGamma, n, t);
+        LOG_F(ERROR, "x=%f y=%f z=%f", x, y, z);
+    #endif
+    
 
-    // Line director (normalised)
-    double l = (xq - P[0])/norm;
-    double m = (yq - P[1])/norm;
-    double n = (zq - P[2])/norm;
+    if(plane_->isInside(x, y, z)){
+        // Calculating dot product parts
+        double adotb = plane_->a_*l + plane_->b_*m + plane_->c_*n;
+        double magA = sqrt(plane_->a_*plane_->a_+plane_->b_*plane_->b_+plane_->c_*plane_->c_);
+        double magB = sqrt(l*l+m*m+n*n);
 
-    // Parameter
-    double t = (-d - a*P[0] - b*P[1] - c*P[2])/(a*l + b*m + c*n);
+        #if DEBUG_HIT == 1
+            LOG_F(INFO, "cos(theta)=%f", adotb/(magA*magB));
+        #endif
 
-    // Getting interaction point
-    double x = P[0] + l * t;
-    double y = P[1] + m * t;
-    double z = P[2] + n * t;
 
-    if((x <= max(vertex[0][0], vertex[2][0]) && x >= min(vertex[0][0], vertex[2][0])) && (y <= max(vertex[1][1], vertex[2][1]) && y >= min(vertex[1][1], vertex[2][1])) && (z <= max(vertex[0][2], vertex[1][2]) && z >= min(vertex[0][2], vertex[1][2]))){
+        //LOG_F(ERROR, "cost(t): %.20f",A);
+        if(adotb/(magA*magB) >= 0){
 
-        // Gamma angle to check collision in th right direction
-        double gamma = acos(l*normalVector[0] + m*normalVector[1] + n*normalVector[2]);
-        if(gamma <= M_PI_2 && gamma >= -M_PI_2){
             // Distance between point and detector
-            double distance = sqrt((P[0]-x)*(P[0]-x) + (P[1]-y)*(P[1]-y) + (P[2]-z)*(P[2]-z));
+            double distance = std::sqrt((xGamma-x)*(xGamma-x) + (yGamma-y)*(yGamma-y) + (zGamma-z)*(zGamma-z));
 
             // Calculating time taken in ns
             double time = distance / 0.3;
 
             // Checking if this detector is paralysed
-            if(paralysed(time)){
-                // Saving some debug data
-                string dataA = to_string(P[0]) + "," + to_string(P[1]) + "," + to_string(P[2]) + "," + to_string(x) + "," + to_string(y) + "," + to_string(z);
-                FileWriter::getInstance().writeData(3, dataA);
 
-                // Returning data
-                return time;
-            }
+            #if DEBUG_POINTS == 1
+                // Saving some debug data
+                std::string data = to_string(xGamma) + "," + to_string(yGamma) + "," + to_string(zGamma) + "," + to_string(x) + "," + to_string(y) + "," + to_string(z);
+                fileWriter.writeData(3, data);
+            #elif DEBUG_POINTS == 2
+                // Saving some debug data
+                std::string data = to_string(xGamma) + " " + to_string(yGamma) + " " + to_string(zGamma) + "\n" + to_string(x) + " " + to_string(y) + " " + to_string(z);
+                fileWriter.writeData(3, data);
+            #endif
+
+            // Returning data
+            return time; 
         }
     }
-
     // Returning 0
     return 0;
-}
+}   

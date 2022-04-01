@@ -6,25 +6,31 @@
 
 class DetectorRing{
     public:
-        // Constructor and destructor
+        // Constructor
         DetectorRing(int, double, double);
+
+        // Destructor
         ~DetectorRing();
 
         // Getters
-        int getNumberOfDetectors(){return n;}
         double* checkInteraction(double*, double*);
         void drawDetector();
         void addData(int, Data&);
         void saveData();
 
     private:
-        Detector **detectors;
-        double deltaOmega = 0;
-        double width = 0;
-        double height = 0;
-        double radius = 0; 
-        double n = 0;
-        bool t = true;
+        // Default constructor removed to avoid unwanted intialization
+        DetectorRing();
+
+        // Detectors array
+        Detector **detectors_;
+
+        // Angle distance between detectors
+        double deltaPhi_ = 0;
+
+        // Ring data
+        double width_ = 0, height_ = 0, radius_ = 0;
+        int nDetectors_ = 0;
 };
 
 #endif

@@ -50,11 +50,11 @@ double gaussianRejection(double mu, double sigma, double max=1.){
  * along the z axis
  * 
  * @param p point
- * @param omega rotation angle
+ * @param phi rotation angle
  * @return rotated point
  */
-double* zAxisRotation(double* p, double omega){
-    return new double[3]{p[0] * cos(omega) - p[1] * sin(omega), p[0] * sin(omega) + p[1] * cos(omega), p[2]};
+double* zAxisRotation(double* p, double phi){
+    return new double[3]{p[0] * cos(phi) - p[1] * sin(phi), p[0] * sin(phi) + p[1] * cos(phi), p[2]};
 }
 
 #endif

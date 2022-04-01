@@ -3,10 +3,11 @@
 
 // External Libs
 #include "../../libs/loguru/loguru.hpp"
-#include <iostream>
+
 
 // Declaring a static constant path to the file
 const std::string FileReader::path[] = {"data/simulation/data0.dat"};
+
 
 // Declaring static constant for binary file access
 const bool FileReader::bin[] = {1};
@@ -53,21 +54,31 @@ FileReader::FileReader(){
             exit(1);
         }
 
-        // Temp vector
-        std::vector<Data> _;
+        if(bin[i] == 1){
+            // Temp vector
+            std::vector<Data> _;
 
-        // Copies all data into buffer
-        while (!file[i]->eof()){
-            Data dato;
-            file[i]->read((char*)&dato, sizeof(dato));
-            _.push_back(dato);
+            // Copies all data into buffer
+            while (!file[i]->eof()){
+                Data dato;
+                file[i]->read((char*)&dato, sizeof(dato));
+                _.push_back(dato);
+            }
+            
+            // Pushing _ into data
+            data.push_back(_);
         }
-        
-        // Pushing _ into data
-        data.push_back(_);
     }
 }
 
+/**
+ * @brief Returning i-th file data
+ * 
+ * @param i 
+ * @return std::vector<Data> 
+ */
 std::vector<Data> FileReader::getData(int i){
-    return data[i];
+    if(bin[i] == 1)
+        return data[i];
+    throw std::string{"FileReader not open in bin mode!"};
 }

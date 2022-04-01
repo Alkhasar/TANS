@@ -1,13 +1,14 @@
 #ifndef FILEREADER
 #define FILEREADER
 
-// Implementazione singleton in cpp 11: https://stackoverflow.com/questions/1008019/c-singleton-design-pattern
-
-// Includes        
-#include <fstream>          // for filestreams
+// STD includes
+#include <fstream>
 #include <string>
-#include "Data.h"         // this file makes a large use of cpp string class
 #include <vector>
+
+// Project structs
+#include "Data.h"
+
 class FileReader{
     public:
         // Singleton Pattern
@@ -29,8 +30,10 @@ class FileReader{
         static const bool bin[nFiles];
         
         // 2D Vector data
-        std::vector<std::vector<Data>> data; 
+        std::vector<std::vector<Data>> data;
+
 
 };
+
 
 #endif

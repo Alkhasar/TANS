@@ -6,25 +6,28 @@
 
 class Point : public Shape {
     public:
-        // Constructors and destroyers
-        ~Point();
+        
+        // Constructor
         Point(double, double, double);
+        
+        // Destructor
+        ~Point();
+        
+        // Copy constructor
         Point(const Point&);
-        Shape* clone(); // Probably to delete
 
-        // Methods
-        bool isInside(double, double, double);
+        // Virtual class clone
+        Shape* clone();
+
+        // This method should never be called with point
+        bool isInside(double, double, double) {return true;};
+        
+        // Returns the point
         double* sample();
 
     private:
-        // Constructor private to avoid unwanted initialization
+        // Default constructor private to avoid unwanted initialization
         Point();
-
-        // Point parameters
-        double x = 0;
-        double y = 0;
-        double z = 0;
-
 };
 
 #endif

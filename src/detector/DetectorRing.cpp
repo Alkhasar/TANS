@@ -1,17 +1,21 @@
-// Std includes
+// STD includes
 #include <math.h>
+#include <vector>
+#include <iostream>
+
+// External includes
+#include "../../libs/loguru/loguru.hpp"
 
 // Project includes
 #include "../../headers/detector/DetectorRing.h"
-#include "../../libs/loguru/loguru.hpp"
 #include "../../headers/utils/FileWriter.h"
-
+#include "../../headers/utils/Data.h"
 
 /**
  * @brief Construct a detector Ring taking a number n of detectors to arange around a ring of radius r.
  * 
  * @param n number of detectors
- * @param r radius of the detector ring
+ * @param radius radius of the detector ring
  * @param width detectors width (along z)
  */
 DetectorRing::DetectorRing(int n, double radius, double width){
@@ -22,25 +26,25 @@ DetectorRing::DetectorRing(int n, double radius, double width){
     LOG_F(INFO, "Constructing at: %p", (void*) this);
 
     //Asigning and logging parameters
-    deltaOmega = 2 * M_PI / n;
-    LOG_F(INFO, "Delta Omega: %frad", deltaOmega);
+    nDetectors_ = n;
+    LOG_F(INFO, "Number of detectors: %i", nDetectors_);
 
-    this->width = width;
-    LOG_F(INFO, "Detectors width: %fm", width);
+    deltaPhi_ = 2 * M_PI / nDetectors_;
+    LOG_F(INFO, "Delta Omega: %frad", deltaPhi_);
 
-    this->radius = radius;
-    LOG_F(INFO, "Detectors center distance from origin: %fm", radius);
+    width_ = width;
+    LOG_F(INFO, "Detectors width: %fm", width_);
 
-    this->n = n;
-    LOG_F(INFO, "Number of detectors: %i", n);
+    radius_ = radius;
+    LOG_F(INFO, "Detectors center distance from origin: %fm", radius_);
 
-    height = 2 * radius * tan(deltaOmega/2);
-    LOG_F(INFO, "Detectors height: %fm", height);
+    height_ = 2 * radius_ * tan(deltaPhi_/2);
+    LOG_F(INFO, "Detectors height: %fm", height_);
 
-    detectors = new Detector*[n];
-    for(int i = 0; i < n; i++){
+    detectors_ = new Detector*[nDetectors_];
+    for(int i = 0; i < nDetectors_; i++){
         LOG_F(INFO, "Generating Detector N°: %i", i);
-        detectors[i] = new Detector(width, height, deltaOmega*i, radius);
+        detectors_[i] = new Detector(width_, height_, deltaPhi_*i, radius_);
     }
 }
 
@@ -50,7 +54,7 @@ DetectorRing::DetectorRing(int n, double radius, double width){
  */
 DetectorRing::~DetectorRing(){
     LOG_F(INFO, "Destroying detectors ring %p", (void*) this);
-    delete[] detectors;
+    delete[] detectors_;
 }
 
 /**
@@ -58,13 +62,13 @@ DetectorRing::~DetectorRing(){
  * 
  * @param P emitted photon position
  * @param angles emitted photon angles
- * @return TOCHANGE: {xp, yp, zp, x, y, z, time, n} should be only detector number and time
+ * @return detector number and time
  */
 double* DetectorRing::checkInteraction(double* P, double* angles){
     // For every detector in the detector ring
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < nDetectors_; i++){
         //Retrieve interaction deltaT from creation to hit
-        double time = detectors[i]->interaction(P, angles); // Outside of debug should be only time
+        double time = detectors_[i]->checkInteraction(P, angles); // Outside of debug should be only time
         if(time != 0){
             // if a time has been given return it with detector number
             return (new double[2]{(double) i, time});
@@ -80,37 +84,35 @@ double* DetectorRing::checkInteraction(double* P, double* angles){
  * @param data data to add
  */
 void DetectorRing::addData(int i, Data& data){
-    detectors[i]->addData(data);
+    detectors_[i]->addData(data);
 }
 
-void DetectorRing::drawDetector(){
-    for(int i = 0; i < n; i++){
-        for(int j = 0; j < 1000; j++){
-            double* _point = detectors[i]->samplePoint();
-            
-            // saving point
-            string dataA = to_string(_point[0]) + "," + to_string(_point[1]) + "," + to_string(_point[2]);
-            FileWriter::getInstance().writeData(3, dataA);
-
-            delete[] _point;
-        }
-    }
-}
-
+/**
+ * @brief checks for valid data in every detectors and saves it
+ * 
+ */
 void DetectorRing::saveData(){
     // File writer instance
     FileWriter& fileWriter = FileWriter::getInstance();
-    for(int i = 0; i < n; i++){
-        vector<Data> data = detectors[i]->getData();
-        sort(data.begin(), data.end(), [](const Data& a, const Data& b){
-            return a.time < b.time; // Verifica se Data a o Data b è piu grande
-        });
 
+    // Checks conditions over every detector
+    for(int i = 0; i < nDetectors_; i++){
+        std::vector<Data> data = detectors_[i]->getData();
+        std::sort(data.begin(), data.end(), 
+            // Lambda Function to sort data based on Data.time
+            [](const Data& a, const Data& b){
+                return a.time < b.time; 
+            }
+        );
+        // For every hit on the detector
         for(Data d : data){
-            if(!detectors[i]->paralysed(d.time)){ 
+            // Save data if it is not paralysed
+            if(!detectors_[i]->paralysed(d.time)){
                 fileWriter.writeData(0, d);
             }
         }
-        detectors[i]->clearData();
+
+        // Clear detectors data
+        detectors_[i]->clearData();
     }
 }

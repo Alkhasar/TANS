@@ -6,23 +6,30 @@
 
 class Cylinder : public Shape {
     public:
-        // Constructors and destroyers
+
+        // Constructor
+        Cylinder(double, double, double, double, double);
+
+        // Destructor
         ~Cylinder();
-        Cylinder(double, double);
+
+        // Copy constructor
         Cylinder(const Cylinder&);
+
+        // Virtual class clone
         Shape* clone(); // Probably to delete
 
-        // Methods
+        // Virtual method implementation
         bool isInside(double, double, double);
         double* sample();
 
     private:
-        // Constructor private to avoid unwanted initialization
+        // Default constructor private to avoid unwanted initialization
         Cylinder();
 
         // Cylinder parameters
-        double radius = 0;
-        double heigth = 0;
+        double radius_ = 0;
+        double heigth_ = 0;
 
 };
 

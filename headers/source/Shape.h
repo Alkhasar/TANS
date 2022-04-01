@@ -3,36 +3,34 @@
 
 class Shape {
     public:
-        // Constructor & Destructors
-        Shape();
-        virtual ~Shape();
-        Shape(const Shape&);
+        
+        // Shape's counstructor
+        Shape(double, double, double);
 
-        // Clone Constructor
+        // Virtual Destructor
+        virtual ~Shape();
+        
+        // Virtual clone
         virtual Shape* clone() = 0;
 
-        // Methods COMMENTARE
+        // Checks if a point is inside our shape
         virtual bool isInside(double, double, double) = 0;
+
+        // Samples a point
         virtual double * sample() = 0;
-        void print();
 
-        // Getters
-        double getX();
-        double getY();
-        double getZ();
-
-        // Setters
-        void setX(double);
-        void setY(double);
-        void setZ(double);
-
-    private:
-
-        double X = 0;
-        double Y = 0;
-        double Z = 0;
+        // Copy constructor
+        Shape(const Shape&);
 
 
+    protected:
+        // Default constructor private to avoid unwanted initialization
+        Shape();
+
+        // Shape's position
+        double x_ = 0;
+        double y_ = 0;
+        double z_ = 0;
 };
 
 #endif

@@ -1,47 +1,51 @@
-// Project includes
-#include "../../headers/source/RadioNuclide.h"
+// STD includes
+#include <math.h>
+#include <random>
+#include <string>
 
 // External libs
 #include "../../libs/loguru/loguru.hpp"
 
-// std includes
-#include <math.h>
-#include <random>
+// Project includes
+#include "../../headers/source/RadioNuclide.h"
+
 
 /**
  * @brief Construct a new Radio Nuclide object
  * 
  * @param lambda decay constant
- * @param A current activity
+ * @param N_0 starting number of nuclei
  */
-RadioNuclide::RadioNuclide(double lambda, double N_0){
+RadioNuclide::RadioNuclide(double lambda, double N0){
 
     // Changing log scope
     LOG_SCOPE_F(INFO, "RADIO NUCLIDE");
     
+    // Checking parameters
+    LOG_IF_F(ERROR, lambda==0 || N0==0, "Radionuclide not initalised correctly! Check that both lambda and N_0 are greater then 0!");
 
     // Logging construction
     LOG_F(INFO, "Constructing at: %p",(void*) this);
 
     // Logging Activity
-    this->A_0 = N_0*lambda;
-    LOG_F(INFO, "Activity: %f", this->A_0);
+    A0_ = N0*lambda;
+    LOG_F(INFO, "Activity: %f", A0_);
 
     // Logging decay constant
-    this->lambda = lambda;
-    LOG_F(INFO, "lambda: %f", this->lambda);
+    lambda_ = lambda;
+    LOG_F(INFO, "lambda: %f", lambda_);
 
     // Logging N
-    this->N_0 = N_0;
-    LOG_F(INFO, "N_0: %f", this->N_0);
+    N0_ = N0;
+    LOG_F(INFO, "N_0: %f", N0_);
 
     // Logging tau
-    tau = 1./lambda;
-    LOG_F(INFO, "tau: %f", this->tau);
+    tau_ = 1./lambda_;
+    LOG_F(INFO, "tau: %lf", tau_);
 }
 
 /**
- * @brief Destroy the Radio Nuclide
+ * @brief Destroy the Radio Nuclide and log it
  * 
  */
 RadioNuclide::~RadioNuclide(){
@@ -54,22 +58,12 @@ RadioNuclide::~RadioNuclide(){
  * @param src radio nuclide address
  */
 RadioNuclide::RadioNuclide(const RadioNuclide& src):
-    lambda(src.lambda),
-    N_0(src.N_0),
-    A_0(src.A_0),
-    tau(src.tau),
-    elapsedTime(src.elapsedTime)
+    lambda_(src.lambda_),
+    N0_(src.N0_),
+    A0_(src.A0_),
+    tau_(src.tau_)
 {
     LOG_F(INFO, "Copying %p in new object", (void*) &src);
-}
-
-/**
- * @brief Getter for decay constant
- * 
- * @return decay constant as double 
- */
-double RadioNuclide::getLambda(){
-    return lambda;
 }
 
 /**
@@ -79,79 +73,48 @@ double RadioNuclide::getLambda(){
  * @return N_0*exp(-lambda*t) 
  */
 double RadioNuclide::getN(double t){
-    return N_0*exp(-lambda*t);
+    return N0_*exp(-lambda_*t);
 }
 
-/**
- * @brief Calculates and returns activity at time t
- * 
- * @param t current time
- * @return exp(-lambda*t)
- */
-double RadioNuclide::getA(double t){
-    return lambda*getN(t);
-}
-
-/**
- * @brief Returns the half life
- * 
- * @return half life 
- */
-double RadioNuclide::getTau(){
-    return tau;
-}
-
-/**
- * @brief Returns current confidency range
- * 
- * @return confidency range 
- */
-double RadioNuclide::getConfidency(){
-    return confidency;
-}
-
-/**
- * @brief Returns elapsed time
- * 
- * @return double 
- */
-double RadioNuclide::getElapsedTime(){
-    return elapsedTime;
-}
 
 /**
  * @brief Returns 2 pair of angles, used as photon angles
  * 
- * @return {{omegaA, thetaA}, {omegaB, thetaB}} 
+ *          theta -> [0, Pi]
+ *          phi   -> [0, 2Pi]
+ * 
+ * @return {{phiA, thetaA}, {phiB, thetaB}} 
  */
 double** RadioNuclide::sample(){ 
+    
+    // Lines of code to keep track of code to use the builtin
+    // random number generator
+    
+    /*static std::random_device rd;
+    static std::mt19937 gen(rd());
+    static std::uniform_real_distribution<> disA(0, 1);
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> disA(0, 1);
-    std::uniform_real_distribution<> disB(-1, 1);
+    double u1 = disA(gen);
+    double u2 = disA(gen);*/
 
-    double u1 = disA(gen);//(double) rand()/RAND_MAX; 
-    double u2 = disB(gen);//(double) rand()/RAND_MAX;
+    // Generating a pair of random uniform numbers between (0, 1);
+    double u1 = (double) rand()/RAND_MAX; 
+    double u2 = (double) rand()/RAND_MAX; 
 
     // Omega nd theta angle sampling
-    double omega = 2 * M_PI * u1 ; // Omega 1 from 0 to pi
-    double theta = acos(u2); // acos(u2);1 - 2 * 
+    double phi = 2 * M_PI * u1 ; 
+    double theta = acos(1 - 2*u2);
     
     // Data organization
     double** angles = new double*[2];
-    angles[0] = new double[2]{omega, theta};
-    angles[1] = new double[2]{std::fmod(omega + M_PI, 2*M_PI), theta};//(omega >= M_PI) ? omega - M_PI : omega + M_PI, theta};// std::fmod(omega + M_PI, 2*M_PI)
+    angles[0] = new double[2]{phi, theta};
+    angles[1] = new double[2]{std::fmod(phi + M_PI, 2*M_PI),  M_PI - theta};
 
-    return angles; // Curently emitted back to back
-}
+    // Debug stuff
+    #if DEBUG_ANGLES == 1
+        std::string s = std::to_string(angles[0][0]) + " " + std::to_string(angles[0][1]) + " " + std::to_string(angles[1][0]) + " " + std::to_string(angles[1][1]);
+        FileWriter::getInstance().writeData(4, s);
+    #endif
 
-/**
- * Return simulation passed time
- * 
- * @param dt Time increment
- */
-void RadioNuclide::addElapsedTime(double dt){
-    this->elapsedTime += dt; 
-    // Updating ativity here
+    return angles;
 }

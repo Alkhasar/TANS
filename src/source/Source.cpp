@@ -1,17 +1,13 @@
-// Project includes
-#include "../../headers/source/shapes/Cylinder.h"
-#include "../../headers/source/Source.h"
-#include "../../headers/detector/Detector.h"
-#include "../../headers/utils/FileWriter.h"
-
-// External libs includess
-#include "../../libs/loguru/loguru.hpp"
-
-// Std includes
+// STD includes
 #include <math.h>
 #include <string>
 
-using namespace std;
+// External libs
+#include "../../libs/loguru/loguru.hpp"
+
+// Project includes
+#include "../../headers/source/shapes/Cylinder.h"
+#include "../../headers/source/Source.h"
 
 /**
  * @brief Builds a new source object given a shape and a radionuclide
@@ -28,30 +24,12 @@ Source::Source(Shape * shape, RadioNuclide * radioNuclide){
     LOG_F(INFO, "Constructing at: %p", (void*) this);
 
     // Logging shape
-    this->shape = shape;
-    LOG_F(INFO,"shape: %p", (void*) (this->shape));
+    shape_ = shape;
+    LOG_F(INFO,"shape: %p", (void*) (shape_));
 
     // Logging radionuclide
-    this->radioNuclide = radioNuclide;
-    LOG_F(INFO,"radionuclide: %p", (void*) (this->radioNuclide));
-}
-
-/**
- * @brief Copy constructor
- * 
- * @param src source to copy
- */
-Source::Source(const Source& src):
-    x(src.x),
-    y(src.y),
-    z(src.z),
-    compton(src.compton)
-{   
-    LOG_F(INFO, "Copying %p in new object",(void*) &src);
-
-    // Copying important elements
-    this->shape = src.shape->clone();
-    this->radioNuclide = new RadioNuclide(*src.radioNuclide);
+    radioNuclide_ = radioNuclide;
+    LOG_F(INFO,"radionuclide: %p", (void*) (radioNuclide_));
 }
 
 /**
@@ -62,36 +40,39 @@ Source::~Source(){
     LOG_F(INFO, "Destroying Source Object %p",(void*) this);
 
     // Destroying shape and radionuclide
-    delete this->shape;
-    delete this->radioNuclide;
+    delete shape_;
+    delete radioNuclide_;
+}
+
+/**
+ * @brief Copy constructor
+ * 
+ * @param src source to copy
+ */
+Source::Source(const Source& src) {   
+    LOG_F(INFO, "Copying source %p in new object", (void*) &src);
+
+    // Copying important elements
+    shape_ = src.shape_->clone();
+    radioNuclide_ = new RadioNuclide(*src.radioNuclide_);
 }
 
 /**
  * @brief Calculates the number of decayed nuclei
  * 
- * @param time elapsed time 
+ * @param dt elapsed time since last calculation
  * @return number of decayed nuclei
  */
-int Source::timeStepDecays(double time){
-
-    // Getting timestep
-    double dt = time - oldEvaluationTime;
+int Source::decayedNuclei(double oldTime, double newTime){
 
     // Number of decays (temporay)
-    int numberOfDecays = radioNuclide->getN(oldEvaluationTime) - radioNuclide->getN(time);//gaussianRejection(0, radioNuclide->getConfidency(), radioNuclide->getA(radioNuclide->getElapsedTime()));
+    int numberOfDecays = radioNuclide_->getN(oldTime) - radioNuclide_->getN(newTime); // TODO: GaussianRejection
 
     // Logging number of decays
-    LOG_F(WARNING, "Number of decays in %fs is %i", dt, numberOfDecays);
-
-    // Adjust radionuclide activity
-    radioNuclide->addElapsedTime(dt); 
-
-    // Setting old evaluation time
-    oldEvaluationTime = time;
+    LOG_F(WARNING, "Number of decays in %.10fs is %i", newTime - oldTime, numberOfDecays);
 
     // Returning number of decays
     return numberOfDecays;
-
 }
 
 /**
@@ -100,7 +81,7 @@ int Source::timeStepDecays(double time){
  * @return {x, y, z} of the sampled point
  */
 double* Source::samplePosition(){
-    return shape->sample();
+    return shape_->sample();
 }
 
 /**
@@ -109,5 +90,5 @@ double* Source::samplePosition(){
  * @return {omega, theta} of the sampled decay
  */
 double** Source::sampleAngles(){
-    return radioNuclide->sample();
+    return radioNuclide_->sample();
 }

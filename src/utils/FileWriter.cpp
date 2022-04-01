@@ -4,11 +4,12 @@
 // External Libs
 #include "../../libs/loguru/loguru.hpp"
 
+
 // Declaring a static constant path to the file
-const std::string FileWriter::path[] = {"data/simulation/data0.dat", "data/simulation/data1.dat", "data/simulation/data2.dat", "data/simulation/data3.dat"};
+const std::string FileWriter::path[] = {"data/simulation/data0.dat", "data/simulation/data1.dat", "data/simulation/data2.dat", "data/simulation/data3.dat", "data/simulation/data4.dat", "data/simulation/data5.dat"};
     
 // Declaring static constant for binary file access
-const bool FileWriter::bin[] = {1, 0, 0, 0};
+const bool FileWriter::bin[] = {1, 0, 0, 0, 0, 1};
 
 /**
  * @brief This function alows access to the file writer instance
