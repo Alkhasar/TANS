@@ -77,7 +77,7 @@ Shape* Cylinder::clone(){
  */
 bool Cylinder::isInside(double x, double y, double z){
     // If the given point is not inside the cylinder return false
-    if((sqrt((x_ - x)*(x_ - x)+(y_ - y)*(y_ - y)) > radius_) || ((z_ + z) > heigth_)){
+    if((sqrt((x_ - x)*(x_ - x)+(y_ - y)*(y_ - y)) > radius_) || ((z_ + z) > heigth_ || (z_ + z) < -heigth_)){
         return false;
     }
     return true;

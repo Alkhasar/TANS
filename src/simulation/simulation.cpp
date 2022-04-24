@@ -8,7 +8,7 @@
 #include "../../headers/utils/Data.h"
 
 // Debug Enabled
-#define DEBUG_PARTICLES 1
+#define DEBUG_PARTICLES 0
 #define DEBUG_POINTS 2
 #define DEBUG_ANGLES 0
 #define DEBUG_HIT 0
@@ -73,8 +73,8 @@ int main(int argc, char *argv[]){
     SHAPE_S s                      = CYL;
 
     // Shapes data
-    const double sourceRadius     = 1.0;
-    const double sourceHeigth     = 1.0;
+    const double sourceRadius     = 0.3;
+    const double sourceHeigth     = 2.0;
     const double x                = 0;
     const double y                = 0;
     const double z                = 0;
@@ -83,21 +83,21 @@ int main(int argc, char *argv[]){
     #if DEBUG_PARTICLES == 1
         // Debug values for nDecays decays
         const double simulationTime   = 0;
-        const double nDecays          = 1e6;
+        const double nDecays          = 1e5;
 
         // Edit nDecays
         const double simulationStep   = nDecays*(1e-6/30366);
         const double maxSimTime       = nDecays*(1e-5/30366);
     #else
         const double simulationTime   = 0;
-        const double simulationStep   = 1e-5;
-        const double maxSimTime       = 1e-4;
+        const double simulationStep   = 1e-4;
+        const double maxSimTime       = 1e-3;
     #endif
 
     // Detector ring data
     const int detectorNumber      = 72;
-    const double ringRadius       = 5.0;      
-    const double detectorWidth    = 2.0;
+    const double ringRadius       = 0.6;      
+    const double detectorWidth    = 0.3;
 
     // ---------------------------------------------------------------------------------------------------- //
     // SIMULATION SETUP
@@ -109,10 +109,10 @@ int main(int argc, char *argv[]){
     // Generating source Shape
     Shape* shape;
     switch(s){
-        case 0:
+        case CYL:
             shape = new Cylinder(sourceRadius, sourceHeigth, x, y, z);
             break;
-        case 1:
+        case PT:
             shape = new Point(x, y, z);
             break;
         default:

@@ -147,15 +147,15 @@ int analysis(double simTime, double detectorNumber){
     for(int i = 0; i < data.size() - 4; i++){
         bool cond[4] = {false, false, false, false};
         for(int j = 0; j < 4; j++){
-            cond[j] = (data[i+j+1].time - data[i+j].time) > 2; // Risoluzione dei rivelatori 250ps FWMH da rendere indipendente o dai dati
+            cond[j] = (data[i+j+1].time - data[i+j].time) > 3; 
         }
 
         if((cond[0] == 1) && (cond[1] == 0) && (cond[2] == 1)){
             std::vector<Data> _coinc;
-            _coinc.push_back(data[i]);
-            _coinc.push_back(data[i+3]);
+            _coinc.push_back(data[i+1]);
+            _coinc.push_back(data[i+2]);
             doubleCoincidence.push_back(_coinc);
-            if(data[i].event == data[i+3].event){
+            if(data[i+1].event == data[i+2].event){
                 trueCoincidence.push_back(_coinc);
             }
 

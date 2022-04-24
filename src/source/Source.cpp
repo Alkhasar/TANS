@@ -69,7 +69,7 @@ int Source::decayedNuclei(double oldTime, double newTime){
     int numberOfDecays = radioNuclide_->getN(oldTime) - radioNuclide_->getN(newTime); // TODO: GaussianRejection
 
     // Logging number of decays
-    LOG_F(WARNING, "Number of decays in %.10fs is %i", newTime - oldTime, numberOfDecays);
+    LOG_F(WARNING, "Number of decays in %.10fs at %.10f is %i", newTime - oldTime, newTime, numberOfDecays);
 
     // Returning number of decays
     return numberOfDecays;

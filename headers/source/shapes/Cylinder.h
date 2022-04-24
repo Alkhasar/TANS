@@ -17,7 +17,7 @@ class Cylinder : public Shape {
         Cylinder(const Cylinder&);
 
         // Virtual class clone
-        Shape* clone(); // Probably to delete
+        Shape* clone();
 
         // Virtual method implementation
         bool isInside(double, double, double);

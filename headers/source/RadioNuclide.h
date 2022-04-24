@@ -13,7 +13,7 @@ class RadioNuclide {
         ~RadioNuclide();
 
         // Methods
-        double **sample();
+        double** sample();
 
         // Getters
         double getN(double);

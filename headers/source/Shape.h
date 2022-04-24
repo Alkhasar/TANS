@@ -17,7 +17,7 @@ class Shape {
         virtual bool isInside(double, double, double) = 0;
 
         // Samples a point
-        virtual double * sample() = 0;
+        virtual double* sample() = 0;
 
         // Copy constructor
         Shape(const Shape&);

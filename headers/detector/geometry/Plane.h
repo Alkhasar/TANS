@@ -12,7 +12,7 @@ class Plane {
         // Copy constructor
         Plane(const Plane&);
 
-        // Checks if point lies on plane
+        // Checks if point lies inside boundaries
         bool isInside(double, double, double); 
 
         // Plane parameter
