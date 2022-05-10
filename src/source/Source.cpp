@@ -65,8 +65,8 @@ Source::Source(const Source& src) {
  */
 int Source::decayedNuclei(double oldTime, double newTime){
 
-    // Number of decays (temporay)
-    int numberOfDecays = radioNuclide_->getN(oldTime) - radioNuclide_->getN(newTime); // TODO: GaussianRejection
+    // Number of decays
+    int numberOfDecays = radioNuclide_->getN(oldTime) - radioNuclide_->getN(newTime);
 
     // Logging number of decays
     LOG_F(WARNING, "Number of decays in %.10fs at %.10f is %i", newTime - oldTime, newTime, numberOfDecays);

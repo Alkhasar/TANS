@@ -2650,3 +2650,83 @@ date       time         ( uptime  ) [ thread name/id ]                   file:li
 2022-04-24 16:47:26.138 (  28.133s) [        45682A40]           analysis.cpp:220   INFO| TRUE: 29161
 2022-04-24 16:47:26.139 (  28.133s) [        45682A40]           analysis.cpp:221   INFO| NEC: 1125594.219569
 2022-04-24 16:47:27.136 (  29.131s) [        45682A40]         FileReader.cpp:31    INFO| Destroying file reader 0x7f9b45bb2110
+
+
+
+
+
+File verbosity level: 9
+date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
+2022-05-08 15:41:48.356 (   0.008s) [        B67E2A40]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'a', verbosity: 9
+2022-05-08 15:41:48.356 (   0.008s) [        B67E2A40]           analysis.cpp:37    INFO| MAX SIMULATION TIME: 0.000100 DETECTOR NUMBER: 72
+2022-05-08 15:41:48.356 (   0.008s) [        B67E2A40]         FileReader.cpp:44    INFO| { FILE Reader
+2022-05-08 15:41:48.356 (   0.008s) [        B67E2A40]         FileReader.cpp:45    WARN| .   File Reader Instantiated, should appear only once!
+2022-05-08 15:41:48.356 (   0.008s) [        B67E2A40]         FileReader.cpp:46    INFO| .   Constructing at 0x7f88b6d12110
+2022-05-08 15:41:48.356 (   0.008s) [        B67E2A40]         FileReader.cpp:50    INFO| .   Opening file: data/simulation/data0.dat Binary Mode: 1
+2022-05-08 15:41:48.359 (   0.011s) [        B67E2A40]         FileReader.cpp:44    INFO| } 0.003 s: FILE Reader
+2022-05-08 15:41:48.474 (   0.127s) [        B67E2A40]           analysis.cpp:217   INFO| TOTAL HITS: 32311
+2022-05-08 15:41:48.474 (   0.127s) [        B67E2A40]           analysis.cpp:218   INFO| DOUBLES: 3749
+2022-05-08 15:41:48.474 (   0.127s) [        B67E2A40]           analysis.cpp:219   INFO| MULTIPLES: 1633
+2022-05-08 15:41:48.475 (   0.127s) [        B67E2A40]           analysis.cpp:220   INFO| TRUE: 739
+2022-05-08 15:41:48.475 (   0.127s) [        B67E2A40]           analysis.cpp:221   INFO| NEC: 1456711.122966
+2022-05-08 15:41:48.486 (   0.139s) [        B67E2A40]         FileReader.cpp:31    INFO| Destroying file reader 0x7f88b6d12110
+
+
+
+
+
+File verbosity level: 9
+date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
+2022-05-08 15:43:12.349 (   0.009s) [        E0CAAA40]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'a', verbosity: 9
+2022-05-08 15:43:12.349 (   0.009s) [        E0CAAA40]           analysis.cpp:37    INFO| MAX SIMULATION TIME: 0.000100 DETECTOR NUMBER: 72
+2022-05-08 15:43:12.349 (   0.009s) [        E0CAAA40]         FileReader.cpp:44    INFO| { FILE Reader
+2022-05-08 15:43:12.349 (   0.009s) [        E0CAAA40]         FileReader.cpp:45    WARN| .   File Reader Instantiated, should appear only once!
+2022-05-08 15:43:12.349 (   0.009s) [        E0CAAA40]         FileReader.cpp:46    INFO| .   Constructing at 0x7fc1e11da110
+2022-05-08 15:43:12.349 (   0.009s) [        E0CAAA40]         FileReader.cpp:50    INFO| .   Opening file: data/simulation/data0.dat Binary Mode: 1
+2022-05-08 15:43:12.351 (   0.011s) [        E0CAAA40]         FileReader.cpp:44    INFO| } 0.002 s: FILE Reader
+2022-05-08 15:43:12.446 (   0.106s) [        E0CAAA40]           analysis.cpp:217   INFO| TOTAL HITS: 32311
+2022-05-08 15:43:12.446 (   0.106s) [        E0CAAA40]           analysis.cpp:218   INFO| DOUBLES: 3749
+2022-05-08 15:43:12.447 (   0.106s) [        E0CAAA40]           analysis.cpp:219   INFO| MULTIPLES: 1633
+2022-05-08 15:43:12.447 (   0.106s) [        E0CAAA40]           analysis.cpp:220   INFO| TRUE: 739
+2022-05-08 15:43:12.447 (   0.107s) [        E0CAAA40]           analysis.cpp:221   INFO| NEC: 1456711.122966
+2022-05-08 15:43:12.459 (   0.119s) [        E0CAAA40]         FileReader.cpp:31    INFO| Destroying file reader 0x7fc1e11da110
+
+
+
+
+
+File verbosity level: 9
+date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
+2022-05-08 18:08:41.828 (   0.010s) [        92888A40]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'a', verbosity: 9
+2022-05-08 18:08:41.828 (   0.010s) [        92888A40]           analysis.cpp:37    INFO| MAX SIMULATION TIME: 0.001000 DETECTOR NUMBER: 72
+2022-05-08 18:08:41.828 (   0.010s) [        92888A40]         FileReader.cpp:44    INFO| { FILE Reader
+2022-05-08 18:08:41.828 (   0.010s) [        92888A40]         FileReader.cpp:45    WARN| .   File Reader Instantiated, should appear only once!
+2022-05-08 18:08:41.828 (   0.011s) [        92888A40]         FileReader.cpp:46    INFO| .   Constructing at 0x7f4392db8110
+2022-05-08 18:08:41.828 (   0.011s) [        92888A40]         FileReader.cpp:50    INFO| .   Opening file: data/simulation/data0.dat Binary Mode: 1
+2022-05-08 18:08:41.851 (   0.034s) [        92888A40]         FileReader.cpp:44    INFO| } 0.023 s: FILE Reader
+2022-05-08 18:08:42.491 (   0.674s) [        92888A40]           analysis.cpp:217   INFO| TOTAL HITS: 303419
+2022-05-08 18:08:42.491 (   0.674s) [        92888A40]           analysis.cpp:218   INFO| DOUBLES: 35138
+2022-05-08 18:08:42.491 (   0.674s) [        92888A40]           analysis.cpp:219   INFO| MULTIPLES: 15390
+2022-05-08 18:08:42.491 (   0.674s) [        92888A40]           analysis.cpp:220   INFO| TRUE: 6726
+2022-05-08 18:08:42.492 (   0.674s) [        92888A40]           analysis.cpp:221   INFO| NEC: 1287468.723319
+2022-05-08 18:08:42.507 (   0.690s) [        92888A40]         FileReader.cpp:31    INFO| Destroying file reader 0x7f4392db8110
+
+
+
+
+
+File verbosity level: 9
+date       time         ( uptime  ) [ thread name/id ]                   file:line     v| 
+2022-05-08 18:23:17.422 (   0.012s) [        20545A40]             loguru.cpp:827   INFO| Logging to 'logs/log.log', mode: 'a', verbosity: 9
+2022-05-08 18:23:17.422 (   0.012s) [        20545A40]           analysis.cpp:37    INFO| MAX SIMULATION TIME: 0.001000 DETECTOR NUMBER: 72
+2022-05-08 18:23:17.423 (   0.012s) [        20545A40]         FileReader.cpp:44    INFO| { FILE Reader
+2022-05-08 18:23:17.423 (   0.013s) [        20545A40]         FileReader.cpp:45    WARN| .   File Reader Instantiated, should appear only once!
+2022-05-08 18:23:17.423 (   0.013s) [        20545A40]         FileReader.cpp:46    INFO| .   Constructing at 0x7f5820a75110
+2022-05-08 18:23:17.423 (   0.013s) [        20545A40]         FileReader.cpp:50    INFO| .   Opening file: data/simulation/data0.dat Binary Mode: 1
+2022-05-08 18:23:17.457 (   0.047s) [        20545A40]         FileReader.cpp:44    INFO| } 0.034 s: FILE Reader
+2022-05-08 18:23:19.849 (   2.438s) [        20545A40]           analysis.cpp:220   INFO| TOTAL HITS: 303419
+2022-05-08 18:23:19.849 (   2.438s) [        20545A40]           analysis.cpp:221   INFO| DOUBLES: 35138
+2022-05-08 18:23:19.849 (   2.439s) [        20545A40]           analysis.cpp:222   INFO| MULTIPLES: 15390
+2022-05-08 18:23:19.849 (   2.439s) [        20545A40]           analysis.cpp:223   INFO| TRUE: 6726
+2022-05-08 18:23:19.849 (   2.439s) [        20545A40]           analysis.cpp:224   INFO| NEC: 1287468.723319
+2022-05-08 18:23:19.864 (   2.454s) [        20545A40]         FileReader.cpp:31    INFO| Destroying file reader 0x7f5820a75110

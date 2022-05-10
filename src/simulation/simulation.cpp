@@ -90,8 +90,8 @@ int main(int argc, char *argv[]){
         const double maxSimTime       = nDecays*(1e-5/30366);
     #else
         const double simulationTime   = 0;
-        const double simulationStep   = 1e-3;
-        const double maxSimTime       = 1e-1;
+        const double simulationStep   = 1e-4;
+        const double maxSimTime       = 1e-3;
     #endif
 
     // Detector ring data
